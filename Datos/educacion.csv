@@ -1,0 +1,301 @@
+ID;Genero ;Nivel Educativo;Estrato;Cursos;Horas;Promedio;Asistencia;Tecnologia ;Satisfaccion
+1;Femenino;Universidad;Alto;5;26,82;4,37;51,29;Bajo;Muy alta
+2;Femenino;Universidad;Bajo;4;9,05;4,9;51,06;Bajo;Media
+3;Femenino;Secundaria;Medio;8;28,19;1,26;92,35;Bajo;Muy alta
+4;Femenino;Universidad;Bajo;6;17,86;1,96;64,85;Medio;Muy alta
+5;Masculino;Universidad;Alto;4;15,87;3,6;57,01;Alto;Muy baja
+6;Masculino;Primaria;Bajo;2;27,63;4,58;76,11;Medio;Alta
+7;Masculino;Secundaria;Bajo;2;3,31;1,47;84,15;Bajo;Muy alta
+8;Masculino;Secundaria;Medio;6;14,81;3,89;93,22;Medio;Muy alta
+9;Femenino;Primaria;Medio;8;9,64;4,65;61,91;Alto;Muy alta
+10;Femenino;Universidad;Alto;4;10,37;3,78;51,14;Medio;Media
+11;Masculino;Primaria;Bajo;6;19,42;2,65;54,11;Bajo;Media
+12;Masculino;Secundaria;Bajo;2;26,62;3,6;73,09;Alto;Alta
+13;Masculino;Secundaria;Medio;2;10,53;4,74;76,84;Bajo;Media
+14;Masculino;Universidad;Bajo;6;18,55;4,18;99,09;Alto;Muy alta
+15;Masculino;Primaria;Medio;8;25,95;3,34;70,87;Medio;Baja
+16;Femenino;Universidad;Bajo;5;6,36;3,52;59,66;Medio;Alta
+17;Masculino;Universidad;Alto;1;12,87;3,06;99,26;Alto;Media
+18;Femenino;Secundaria;Bajo;8;26,86;1,79;90,98;Medio;Alta
+19;Femenino;Universidad;Alto;8;21,87;3,72;51,71;Bajo;Muy alta
+20;Masculino;Primaria;Medio;5;13,58;4,14;94,33;Medio;Muy baja
+21;Femenino;Secundaria;Medio;3;5,01;2,67;54,89;Bajo;Baja
+22;Femenino;Universidad;Alto;2;3,89;2,96;72,62;Alto;Media
+23;Masculino;Primaria;Medio;8;4,19;4,22;59,01;Medio;Media
+24;Masculino;Universidad;Bajo;8;24,6;3,92;99,52;Bajo;Alta
+25;Femenino;Universidad;Bajo;7;3,64;1,83;65,67;Bajo;Muy baja
+26;Femenino;Secundaria;Bajo;6;7,28;1,99;66,41;Medio;Alta
+27;Masculino;Universidad;Bajo;2;16,33;1,68;67,71;Bajo;Muy alta
+28;Femenino;Secundaria;Bajo;7;24,7;4,99;68,97;Medio;Muy baja
+29;Masculino;Universidad;Alto;7;15,31;4,78;68,53;Bajo;Muy baja
+30;Femenino;Primaria;Alto;7;29,03;4,32;79,98;Bajo;Muy baja
+31;Femenino;Universidad;Alto;8;4,2;3,05;65,35;Bajo;Baja
+32;Masculino;Primaria;Alto;7;16,94;1,03;58,09;Medio;Muy alta
+33;Masculino;Primaria;Medio;6;19,75;3,36;87,27;Alto;Alta
+34;Masculino;Universidad;Medio;8;26,27;1,45;68,21;Medio;Muy baja
+35;Femenino;Universidad;Bajo;7;9,28;3,92;86,05;Bajo;Muy alta
+36;Femenino;Universidad;Medio;4;13,94;4,05;57,48;Medio;Media
+37;Masculino;Secundaria;Bajo;1;9,2;2,27;83,63;Alto;Muy baja
+38;Femenino;Secundaria;Bajo;7;22,96;4,15;91,89;Medio;Muy alta
+39;Femenino;Universidad;Bajo;3;18,54;1,37;72,64;Medio;Baja
+40;Masculino;Universidad;Bajo;8;8,45;3,92;50,86;Bajo;Muy baja
+41;Femenino;Universidad;Bajo;3;8,28;4,46;98,62;Medio;Baja
+42;Femenino;Secundaria;Medio;1;9,52;2,62;77,13;Bajo;Alta
+43;Masculino;Universidad;Bajo;4;22,6;3,27;50,25;Bajo;Media
+44;Masculino;Primaria;Medio;8;21,73;2,89;51,17;Bajo;Muy baja
+45;Femenino;Secundaria;Bajo;6;25,52;1,71;84,87;Medio;Muy baja
+46;Femenino;Primaria;Medio;7;20,44;1,75;99,13;Alto;Muy baja
+47;Femenino;Secundaria;Alto;5;23,34;2,91;54,89;Bajo;Media
+48;Masculino;Secundaria;Medio;1;26,51;2,03;94,05;Bajo;Baja
+49;Masculino;Universidad;Medio;1;28,31;4,43;66,49;Alto;Muy alta
+50;Masculino;Universidad;Medio;8;22,86;4,28;54,16;Medio;Muy baja
+51;Femenino;Primaria;Medio;6;20,19;1,77;76,32;Bajo;Alta
+52;Masculino;Universidad;Medio;6;28,43;1,55;63,87;Medio;Muy alta
+53;Femenino;Secundaria;Bajo;6;21,32;3,38;53,44;Alto;Media
+54;Masculino;Primaria;Alto;5;2,85;3,99;57,72;Medio;Alta
+55;Femenino;Secundaria;Alto;7;12,43;1,28;73,52;Bajo;Alta
+56;Masculino;Universidad;Medio;4;18;1,75;61,1;Bajo;Baja
+57;Femenino;Universidad;Bajo;2;22,27;1,33;62,63;Alto;Baja
+58;Femenino;Primaria;Alto;6;3,89;4,08;84,93;Medio;Muy alta
+59;Femenino;Secundaria;Bajo;4;22,57;2,94;90,32;Alto;Baja
+60;Masculino;Universidad;Medio;5;11,11;1,4;96,94;Bajo;Alta
+61;Femenino;Secundaria;Alto;7;29,78;2,12;97,96;Medio;Media
+62;Femenino;Universidad;Alto;7;22,76;4,15;53,64;Alto;Baja
+63;Femenino;Universidad;Medio;5;27,24;4,66;99,12;Bajo;Muy alta
+64;Masculino;Primaria;Alto;3;6,2;4,72;88,34;Alto;Alta
+65;Femenino;Universidad;Bajo;1;12,08;2,52;52,69;Bajo;Baja
+66;Femenino;Primaria;Alto;8;17,15;3,77;50,17;Medio;Media
+67;Masculino;Secundaria;Alto;6;3,07;1,4;92,06;Alto;Muy baja
+68;Masculino;Primaria;Alto;2;1,7;3,4;84,39;Alto;Baja
+69;Masculino;Secundaria;Medio;7;25,06;1,18;58,04;Alto;Baja
+70;Femenino;Primaria;Bajo;1;20,37;2,71;65,64;Alto;Media
+71;Masculino;Universidad;Alto;6;22,21;3,21;90,05;Medio;Muy alta
+72;Femenino;Primaria;Bajo;6;12,31;4,7;71,66;Medio;Media
+73;Masculino;Primaria;Medio;7;22,68;4,2;92,49;Alto;Muy baja
+74;Femenino;Secundaria;Medio;6;5,85;4,29;57,6;Medio;Baja
+75;Masculino;Primaria;Alto;1;22,87;3,88;72,01;Medio;Muy alta
+76;Masculino;Primaria;Alto;8;17,28;1,97;93,29;Bajo;Muy alta
+77;Femenino;Universidad;Medio;8;17,84;4,51;87,61;Alto;Alta
+78;Femenino;Secundaria;Medio;3;27,68;1,91;81,97;Bajo;Alta
+79;Femenino;Secundaria;Medio;7;22,37;1,63;74,46;Bajo;Alta
+80;Femenino;Universidad;Bajo;5;27,68;4,72;83,34;Bajo;Muy alta
+81;Femenino;Secundaria;Medio;8;7,96;2;55,98;Alto;Muy baja
+82;Femenino;Secundaria;Alto;1;19,19;3,59;82,32;Medio;Baja
+83;Masculino;Primaria;Alto;2;21,22;3,51;73,09;Bajo;Baja
+84;Femenino;Primaria;Bajo;8;28,2;2,9;72,7;Medio;Alta
+85;Masculino;Primaria;Medio;8;6,38;4,14;71,37;Medio;Muy baja
+86;Femenino;Universidad;Medio;8;6,41;4,21;81,15;Medio;Muy baja
+87;Masculino;Primaria;Bajo;8;17,24;3,6;62,15;Medio;Media
+88;Masculino;Secundaria;Medio;5;22,2;2,81;95,38;Medio;Baja
+89;Femenino;Universidad;Alto;3;20,16;1,13;64,34;Alto;Media
+90;Masculino;Secundaria;Medio;8;15,87;2,82;56,78;Bajo;Muy alta
+91;Masculino;Secundaria;Medio;6;4,14;1,4;55,27;Medio;Baja
+92;Masculino;Primaria;Medio;5;24,72;4,5;91,47;Bajo;Baja
+93;Femenino;Secundaria;Medio;4;17,12;2,3;62,54;Bajo;Media
+94;Masculino;Secundaria;Medio;8;2,31;2,89;92,93;Bajo;Muy baja
+95;Masculino;Primaria;Alto;2;25,95;1,98;92,61;Bajo;Muy baja
+96;Femenino;Universidad;Medio;6;2,89;1,49;85,67;Medio;Muy baja
+97;Femenino;Secundaria;Bajo;2;7,3;4,82;91,26;Alto;Baja
+98;Masculino;Primaria;Medio;1;21,39;1,55;55,31;Bajo;Muy alta
+99;Femenino;Secundaria;Medio;6;27,14;3,06;54,67;Alto;Muy alta
+100;Femenino;Universidad;Bajo;6;5,6;3,29;54,09;Medio;Alta
+101;Masculino;Secundaria;Medio;4;10,95;1,12;68,88;Bajo;Media
+102;Femenino;Universidad;Bajo;5;22,54;4,74;65,74;Alto;Muy baja
+103;Masculino;Universidad;Bajo;7;20,33;3,96;97,37;Medio;Alta
+104;Femenino;Universidad;Bajo;5;5,99;1,18;60,5;Medio;Alta
+105;Femenino;Primaria;Medio;2;13,03;2,99;84,85;Bajo;Baja
+106;Masculino;Secundaria;Medio;1;8,22;2,68;74,09;Alto;Muy alta
+107;Femenino;Universidad;Medio;4;10,07;4;54,88;Medio;Alta
+108;Masculino;Secundaria;Alto;7;19,85;1,7;57,38;Bajo;Baja
+109;Masculino;Secundaria;Bajo;3;21,1;4,99;61,86;Medio;Baja
+110;Masculino;Primaria;Medio;2;24,01;4,09;80,35;Bajo;Alta
+111;Femenino;Universidad;Alto;2;8,65;4,64;76,05;Alto;Media
+112;Masculino;Secundaria;Bajo;1;5,88;3,2;85,35;Medio;Media
+113;Masculino;Primaria;Alto;8;8,99;3,11;84,66;Bajo;Alta
+114;Femenino;Secundaria;Alto;2;3,3;1,68;89,64;Medio;Media
+115;Masculino;Primaria;Alto;2;27,66;2,9;52,9;Bajo;Media
+116;Masculino;Secundaria;Medio;3;26,58;1,43;85,06;Medio;Muy alta
+117;Masculino;Secundaria;Bajo;6;14,64;3,42;64,76;Bajo;Muy alta
+118;Masculino;Secundaria;Medio;6;21,22;2,62;89,68;Bajo;Media
+119;Masculino;Secundaria;Alto;5;20,28;3,43;59,35;Medio;Muy alta
+120;Femenino;Universidad;Alto;7;26,89;3,18;92,6;Bajo;Media
+121;Femenino;Secundaria;Bajo;5;6,54;4,7;77,63;Alto;Media
+122;Femenino;Universidad;Alto;7;28,84;3,14;70,72;Bajo;Muy baja
+123;Femenino;Secundaria;Medio;3;21,8;1,3;92,42;Alto;Alta
+124;Masculino;Primaria;Bajo;4;22,46;4,18;58,66;Medio;Alta
+125;Masculino;Universidad;Alto;1;22,35;4,71;79,96;Bajo;Baja
+126;Femenino;Secundaria;Medio;7;20,54;1,68;91,56;Bajo;Muy alta
+127;Masculino;Primaria;Bajo;3;29,2;1,46;62,71;Medio;Alta
+128;Femenino;Universidad;Medio;2;19,82;1,66;67,59;Bajo;Alta
+129;Masculino;Secundaria;Alto;8;9,99;4,23;64,86;Medio;Media
+130;Femenino;Universidad;Medio;8;26,06;1,05;56,4;Alto;Alta
+131;Femenino;Primaria;Bajo;7;1,34;1,64;51,47;Bajo;Muy baja
+132;Femenino;Universidad;Medio;1;24,62;4,04;58,19;Medio;Muy alta
+133;Masculino;Secundaria;Bajo;4;18,44;2,19;82,06;Bajo;Media
+134;Masculino;Secundaria;Medio;1;13,9;3,2;54,15;Bajo;Baja
+135;Femenino;Universidad;Alto;5;26,99;3,89;54,27;Medio;Muy alta
+136;Femenino;Primaria;Medio;1;28,15;3,36;93,79;Bajo;Baja
+137;Femenino;Universidad;Alto;2;17,62;3,17;89,32;Medio;Muy baja
+138;Masculino;Primaria;Bajo;1;24,21;4,74;86,32;Bajo;Muy alta
+139;Masculino;Universidad;Alto;4;13,69;3,15;75,66;Bajo;Baja
+140;Masculino;Primaria;Bajo;1;5,82;1,89;56,01;Alto;Media
+141;Femenino;Primaria;Alto;7;21,29;1,68;58,75;Medio;Alta
+142;Femenino;Universidad;Alto;2;16,15;4,26;70,54;Alto;Alta
+143;Femenino;Primaria;Bajo;1;2,18;1,87;54,95;Medio;Baja
+144;Masculino;Primaria;Bajo;6;15,3;4,14;96,48;Bajo;Muy alta
+145;Masculino;Universidad;Medio;6;13,17;3,31;82,7;Alto;Alta
+146;Masculino;Primaria;Medio;1;15,09;4,88;84,03;Medio;Media
+147;Femenino;Universidad;Bajo;3;15,27;3,54;99,42;Bajo;Alta
+148;Femenino;Secundaria;Bajo;6;19,5;4,92;83,06;Bajo;Alta
+149;Femenino;Secundaria;Medio;2;1,77;3,53;98,7;Alto;Muy alta
+150;Masculino;Universidad;Alto;6;25,29;2,14;98,39;Medio;Media
+151;Masculino;Universidad;Alto;3;7,99;3,96;71,67;Alto;Muy baja
+152;Masculino;Primaria;Medio;4;10,21;2,21;83,77;Medio;Muy baja
+153;Femenino;Secundaria;Alto;5;27,14;2,68;94,81;Medio;Muy alta
+154;Femenino;Primaria;Medio;5;20,1;1,86;64,63;Medio;Alta
+155;Femenino;Secundaria;Alto;1;21,67;4,43;83,78;Medio;Baja
+156;Masculino;Secundaria;Medio;2;27,73;3,85;84,11;Bajo;Alta
+157;Masculino;Secundaria;Medio;5;27,43;3,81;97,24;Bajo;Baja
+158;Femenino;Secundaria;Medio;6;5,17;1,88;89,43;Medio;Media
+159;Femenino;Universidad;Alto;5;22,56;4,56;81,07;Bajo;Baja
+160;Femenino;Universidad;Bajo;2;24,13;2,49;92,12;Medio;Media
+161;Femenino;Primaria;Medio;8;11,42;1,97;76,4;Alto;Alta
+162;Femenino;Universidad;Alto;7;11,03;3,01;76,62;Medio;Muy alta
+163;Masculino;Primaria;Bajo;7;4,45;3,22;58,17;Bajo;Alta
+164;Femenino;Primaria;Alto;4;20,75;1,69;88,18;Bajo;Alta
+165;Femenino;Secundaria;Medio;3;19,47;4,11;57,87;Medio;Alta
+166;Femenino;Primaria;Bajo;1;12,96;3,22;95;Medio;Baja
+167;Femenino;Secundaria;Medio;5;29,77;2,6;82,65;Medio;Muy baja
+168;Femenino;Secundaria;Alto;1;2,17;3,85;89,69;Alto;Alta
+169;Masculino;Secundaria;Bajo;2;4,12;4,24;53,43;Medio;Baja
+170;Femenino;Primaria;Alto;3;23,47;3,6;95,27;Alto;Baja
+171;Masculino;Primaria;Bajo;1;10,78;3,97;66,63;Alto;Media
+172;Femenino;Primaria;Alto;1;16,69;1,31;96,95;Alto;Baja
+173;Femenino;Primaria;Alto;1;25,31;3,41;99,74;Alto;Alta
+174;Masculino;Secundaria;Medio;2;11,57;2,93;85,84;Medio;Media
+175;Masculino;Primaria;Alto;5;20,09;4,49;82,71;Medio;Baja
+176;Femenino;Universidad;Bajo;5;26,3;3,53;83,32;Bajo;Muy alta
+177;Masculino;Primaria;Bajo;6;16,47;4,94;62,37;Medio;Muy alta
+178;Femenino;Secundaria;Alto;4;20,82;4,18;54,11;Bajo;Muy baja
+179;Masculino;Universidad;Bajo;2;5,61;1,44;76,65;Alto;Muy alta
+180;Femenino;Secundaria;Alto;4;28,53;1,92;70,8;Bajo;Muy alta
+181;Masculino;Universidad;Medio;7;15,01;2,64;93,17;Medio;Muy alta
+182;Masculino;Secundaria;Alto;2;7,47;2,55;92,34;Alto;Muy alta
+183;Femenino;Primaria;Bajo;2;4,06;1,78;50,73;Bajo;Muy alta
+184;Femenino;Secundaria;Bajo;2;15,31;4,67;81,9;Bajo;Baja
+185;Femenino;Universidad;Bajo;6;21;2,68;84,17;Alto;Muy alta
+186;Masculino;Secundaria;Bajo;7;14,9;2,62;56,1;Medio;Baja
+187;Femenino;Primaria;Alto;1;27,28;4,44;55,1;Bajo;Muy alta
+188;Femenino;Secundaria;Medio;4;10,99;3,61;89,15;Medio;Muy baja
+189;Masculino;Primaria;Alto;8;28,66;3,39;64,17;Alto;Alta
+190;Masculino;Primaria;Bajo;4;23,76;2,42;91,58;Bajo;Media
+191;Femenino;Universidad;Bajo;1;8,54;1,61;88,47;Bajo;Media
+192;Masculino;Universidad;Alto;3;5,72;3,04;82,88;Medio;Baja
+193;Femenino;Primaria;Medio;7;17,93;1,05;65,27;Bajo;Baja
+194;Masculino;Primaria;Alto;3;13,11;1,09;89,84;Bajo;Media
+195;Masculino;Universidad;Alto;1;11,75;2,65;84,65;Alto;Alta
+196;Femenino;Secundaria;Alto;4;9,44;1,86;66,77;Medio;Muy baja
+197;Masculino;Primaria;Alto;5;15,62;1,84;82,85;Medio;Muy baja
+198;Masculino;Primaria;Alto;5;5,66;4,33;87,65;Alto;Muy baja
+199;Femenino;Universidad;Alto;1;17,92;3,48;69,2;Alto;Alta
+200;Femenino;Universidad;Medio;4;23,94;4,03;62,42;Alto;Muy alta
+201;Masculino;Secundaria;Alto;1;5,95;1,4;95,09;Alto;Muy alta
+202;Femenino;Secundaria;Alto;4;26,68;2,68;86,27;Medio;Media
+203;Masculino;Primaria;Alto;4;21,49;4,78;55,11;Bajo;Muy alta
+204;Masculino;Secundaria;Medio;5;17,76;4,32;59,26;Bajo;Baja
+205;Femenino;Universidad;Bajo;4;14,86;3,57;99,44;Medio;Muy alta
+206;Femenino;Primaria;Bajo;7;20,42;1,51;62,69;Alto;Alta
+207;Masculino;Secundaria;Bajo;3;7,95;3,58;61;Alto;Muy alta
+208;Masculino;Primaria;Medio;4;11,08;2,72;83,69;Bajo;Baja
+209;Masculino;Primaria;Medio;8;3,05;4,6;59,39;Medio;Muy alta
+210;Femenino;Secundaria;Bajo;4;8,28;2,47;97,03;Bajo;Baja
+211;Femenino;Primaria;Bajo;2;12,13;1,84;96,76;Medio;Muy alta
+212;Masculino;Universidad;Bajo;2;29,31;2,97;69,41;Alto;Alta
+213;Masculino;Universidad;Bajo;6;17,11;1,98;98,49;Alto;Muy alta
+214;Femenino;Primaria;Bajo;8;28,07;4,88;57,65;Alto;Alta
+215;Femenino;Secundaria;Medio;6;24,04;2,24;54,8;Bajo;Muy alta
+216;Femenino;Universidad;Alto;8;21,78;1,24;50,35;Medio;Muy baja
+217;Masculino;Universidad;Bajo;6;21,48;3,75;56,27;Bajo;Media
+218;Masculino;Universidad;Bajo;1;27,02;2,93;98,84;Bajo;Muy baja
+219;Femenino;Universidad;Bajo;8;29,75;2,57;61,1;Bajo;Muy baja
+220;Femenino;Primaria;Alto;5;11,97;3,18;61,62;Bajo;Baja
+221;Masculino;Primaria;Bajo;7;13,67;2,41;90,51;Medio;Muy alta
+222;Femenino;Secundaria;Medio;7;9,16;3,06;59,17;Medio;Media
+223;Femenino;Primaria;Medio;6;7,28;1,26;52,93;Bajo;Muy baja
+224;Femenino;Universidad;Medio;2;17,02;2,25;93,41;Alto;Alta
+225;Femenino;Primaria;Alto;1;19,73;2,04;94,6;Alto;Media
+226;Femenino;Secundaria;Medio;6;26,08;2,38;98,3;Bajo;Alta
+227;Femenino;Secundaria;Alto;8;4,98;4,05;73,21;Alto;Media
+228;Masculino;Universidad;Bajo;2;9,28;1,3;92,93;Alto;Baja
+229;Femenino;Secundaria;Medio;7;13,5;3,33;53,25;Bajo;Alta
+230;Femenino;Primaria;Alto;5;25,54;2,91;77,7;Alto;Baja
+231;Femenino;Secundaria;Alto;7;3,49;2,11;55,59;Bajo;Media
+232;Femenino;Primaria;Bajo;4;5,41;2,76;63,21;Bajo;Baja
+233;Masculino;Secundaria;Medio;4;18,58;2,11;73,46;Bajo;Muy baja
+234;Masculino;Secundaria;Alto;7;15,6;3,15;51,63;Alto;Alta
+235;Femenino;Universidad;Medio;4;10,9;4,24;53,34;Medio;Muy baja
+236;Femenino;Universidad;Medio;4;24,72;4,83;96,87;Alto;Muy alta
+237;Masculino;Primaria;Alto;2;9,06;1,08;97,44;Medio;Alta
+238;Femenino;Secundaria;Bajo;2;23,89;4,77;88,55;Bajo;Media
+239;Masculino;Universidad;Bajo;4;2,57;1,79;84,16;Bajo;Baja
+240;Femenino;Universidad;Medio;2;13,42;4,83;94,33;Medio;Alta
+241;Masculino;Secundaria;Alto;4;19,29;3,54;91,05;Alto;Muy alta
+242;Femenino;Primaria;Alto;3;1,23;3,49;86,17;Medio;Muy baja
+243;Masculino;Secundaria;Medio;3;12,43;3,06;97,01;Medio;Alta
+244;Femenino;Primaria;Alto;5;8;1,22;62,76;Medio;Media
+245;Femenino;Universidad;Alto;2;2,88;4,99;64,87;Bajo;Alta
+246;Masculino;Secundaria;Medio;3;15,83;4,1;83,67;Alto;Alta
+247;Masculino;Primaria;Bajo;6;26,12;3,45;50,88;Medio;Baja
+248;Masculino;Secundaria;Alto;7;5,55;3,5;93,69;Medio;Muy alta
+249;Femenino;Primaria;Alto;8;20,07;4,93;56,94;Alto;Muy baja
+250;Femenino;Universidad;Medio;6;5,07;2,56;81,99;Alto;Muy baja
+251;Femenino;Primaria;Medio;7;5,89;4,56;92,32;Alto;Baja
+252;Masculino;Universidad;Alto;8;14,99;3,09;86,68;Alto;Media
+253;Femenino;Universidad;Bajo;4;15,56;1,44;93,37;Medio;Muy alta
+254;Femenino;Secundaria;Bajo;3;2,23;3,36;54,95;Alto;Muy alta
+255;Masculino;Universidad;Alto;1;10,77;4,64;71,02;Medio;Muy alta
+256;Femenino;Primaria;Alto;6;22,74;2,99;90,11;Medio;Media
+257;Masculino;Secundaria;Bajo;4;26,07;4,91;87,02;Medio;Alta
+258;Femenino;Universidad;Medio;4;2,1;2,24;83,74;Medio;Media
+259;Femenino;Universidad;Alto;4;7,66;4,94;68,2;Medio;Baja
+260;Masculino;Secundaria;Medio;5;16,67;2,1;86,72;Medio;Baja
+261;Masculino;Secundaria;Medio;8;13,39;1,84;84,72;Medio;Alta
+262;Masculino;Secundaria;Alto;1;28,24;3,26;61,35;Alto;Muy alta
+263;Femenino;Universidad;Medio;7;27,36;2,91;62,12;Bajo;Media
+264;Masculino;Secundaria;Bajo;3;24,78;3,86;95,82;Medio;Alta
+265;Masculino;Secundaria;Bajo;2;16,89;2,39;94,75;Alto;Baja
+266;Masculino;Secundaria;Alto;4;18,83;2,46;95,01;Medio;Baja
+267;Femenino;Universidad;Bajo;1;26,49;2,17;90,73;Bajo;Baja
+268;Masculino;Primaria;Bajo;7;27,81;3,67;70,38;Bajo;Baja
+269;Masculino;Secundaria;Alto;6;20,29;2,69;84,18;Bajo;Baja
+270;Femenino;Universidad;Bajo;3;29,84;1,84;62,6;Alto;Media
+271;Masculino;Universidad;Bajo;5;3,97;3,64;91,38;Bajo;Muy baja
+272;Femenino;Secundaria;Bajo;7;9,6;2;65,63;Bajo;Muy baja
+273;Masculino;Secundaria;Alto;5;27,75;4,29;65,37;Bajo;Muy baja
+274;Femenino;Universidad;Medio;5;26,17;1,13;59,76;Bajo;Baja
+275;Masculino;Universidad;Alto;3;20,84;3,36;77,67;Bajo;Media
+276;Femenino;Secundaria;Medio;1;8,17;4,11;75,33;Bajo;Baja
+277;Femenino;Universidad;Alto;4;26,35;3,2;93,55;Bajo;Media
+278;Femenino;Universidad;Medio;6;12,89;3;85,92;Alto;Muy baja
+279;Femenino;Universidad;Alto;6;8,41;4,41;92,81;Medio;Baja
+280;Masculino;Primaria;Bajo;4;6,02;1,54;72,63;Bajo;Media
+281;Masculino;Primaria;Alto;5;25,33;1,42;56,99;Medio;Baja
+282;Masculino;Primaria;Alto;8;19,98;1,24;67,55;Medio;Media
+283;Femenino;Secundaria;Bajo;1;13,55;3,38;95,95;Alto;Alta
+284;Femenino;Primaria;Bajo;7;7,05;3,45;89,23;Medio;Alta
+285;Femenino;Secundaria;Alto;6;25,36;2,83;64,78;Alto;Muy alta
+286;Femenino;Primaria;Bajo;5;28,44;3,79;64,22;Alto;Muy alta
+287;Femenino;Primaria;Medio;6;16,35;3,29;66,46;Medio;Muy baja
+288;Masculino;Universidad;Medio;3;16,54;4,72;53,6;Bajo;Muy alta
+289;Masculino;Primaria;Alto;2;25,66;1,84;77,32;Bajo;Muy baja
+290;Masculino;Universidad;Medio;5;19,55;2,02;63,99;Alto;Muy alta
+291;Femenino;Primaria;Bajo;4;16,79;1,4;59,06;Bajo;Alta
+292;Masculino;Primaria;Medio;1;14,5;1,08;69,83;Bajo;Baja
+293;Femenino;Secundaria;Alto;8;27,96;4,94;83,12;Alto;Muy alta
+294;Femenino;Universidad;Alto;2;19,59;4,08;56,22;Medio;Alta
+295;Masculino;Secundaria;Medio;1;22,02;1,78;81,46;Bajo;Baja
+296;Femenino;Primaria;Alto;5;29,98;4,52;97,29;Alto;Alta
+297;Femenino;Secundaria;Bajo;5;18,75;2,69;71,67;Medio;Muy alta
+298;Femenino;Secundaria;Medio;1;16,77;1,29;95,33;Medio;Baja
+299;Masculino;Universidad;Medio;8;20,6;3,33;52,43;Bajo;Baja
+300;Masculino;Secundaria;Medio;2;20,77;4,15;66,34;Bajo;Alta

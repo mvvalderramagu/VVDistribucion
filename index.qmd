@@ -1,0 +1,3110 @@
+---
+title: "DISTRIBUCIONES DE FRECUENCIAS"
+subtitle: "Tablas y Gráficos"
+author: 
+  - name: Maria Valentina Valderrama Gutierrez
+    affiliation: "Universidad del Tolima"
+    affiliation-url: "https://www.ut.edu.co/"
+date: today
+lang: es
+title-block-banner: "#62629e"
+
+format:
+  html:
+    page-layout: full
+    fontsize: 14pt
+    toc: true
+    toc-location: right
+    number-sections: true
+    code-fold: true
+    code-summary: "Ver código"
+    theme: dark
+    highlight-style: monokai
+    html-math-method: katex
+    smooth-scroll: true
+    link-external-newwindow: true
+    code-overflow: scroll
+    favicon: favicon.ico
+    
+editor: visual
+
+knitr:
+  opts_chunk:
+    message: false
+    warning: false
+    fig.align: center
+    fig.width: 6
+    fig.height: 6
+    out.width: "70%"
+bibliography: references.bib
+---
+
+```{=html}
+<div style="position:absolute; top:10px; right:10px;">
+<img src="Logo_ut.png" width="150">
+</div>
+```
+
+```{=html}
+<style>
+body{
+  background-color:#f7f6ed;
+  font-size:130%;
+  text-align:justify;
+}
+</style>
+```
+
+```{=html}
+<style>
+
+/* Links del documento en rosado */
+a {
+  color: #E65C9C !important;
+}
+
+/* Tabla de contenido en negro */
+#TOC a,
+#quarto-sidebar a,
+.sidebar-navigation a {
+  color: #000000 !important;
+}
+
+/* Fondo SOLO de la zona de Referencias */
+#quarto-appendix,
+.quarto-appendix,
+#refs,
+.references,
+.csl-bib-body,
+.csl-entry,
+.quarto-appendix-contents,
+.quarto-appendix-heading,
+.quarto-appendix-secondary-label {
+  background-color: #f7f6ed !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Links de las referencias en rosado */
+#refs a,
+.references a,
+.csl-entry a,
+.citation a {
+  color: #E65C9C !important;
+}
+
+</style>
+```
+
+# .Cargar paquetes
+
+```{r}
+ipak <- function(pkg){
+
+  options(repos = c(CRAN="https://cloud.r-project.org"))
+
+  new.pkg <- pkg[!(pkg %in% rownames(installed.packages()))]
+
+  if(length(new.pkg)) install.packages(new.pkg, dependencies = TRUE)
+
+  invisible(lapply(pkg, function(p)
+    suppressPackageStartupMessages(library(p, character.only = TRUE))
+  ))
+}
+
+packages <- c("tidyverse","kableExtra","psych","readxl")
+
+ipak(packages)
+```
+
+```{=html}
+<style>
+/* Color del texto dentro del código */
+code {
+  color: #ffa0bd !important;
+}
+</style>
+```
+
+```{=html}
+<style>
+.code-fold summary {
+  color: #ffa0bd !important;
+}
+</style>
+```
+
+[@tidyverse; @kableExtra; @readxl; @psych]
+
+# .Introducción
+
+Una **distribución de frecuencias** constituye una de las herramientas fundamentales del análisis estadístico descriptivo. Su propósito es organizar y resumir un conjunto de datos mediante el conteo de las veces que aparece cada valor o categoría de una variable.
+
+Cuando se analiza una sola variable, se construye una distribución de **frecuencias unidimensional**. Cuando se estudian simultáneamente dos variables, se utiliza una distribución de frecuencias bidimensional, también conocida como tabla de contingencia cuando las variables son categóricas.
+
+Estas herramientas permiten transformar grandes cantidades de información en estructuras organizadas que facilitan la interpretación, comparación y representación gráfica de los datos.
+
+En el contexto de la Educación, por ejemplo, pueden utilizarse para estudiar:
+
+Nivel educativo de los estudiantes. Tipo de recurso educativo utilizado. Satisfacción con una institución educativa. Edad de los estudiantes. Rendimiento académico. Relación entre nivel educativo y rendimiento académico. Relación entre género y participación en actividades escolares. Relación entre estrato socioeconómico y acceso a recursos educativos.
+
+**Distribución de Frecuencias Unidimensional**
+
+**Concepto**
+
+Una distribución de frecuencias unidimensional organiza los valores observados de una única variable junto con el número de veces que aparece cada valor o categoría.
+
+Sea:
+
+$$X=\{x_1,x_2,\ldots,x_n\}$$
+
+un conjunto de $n$ observaciones de una variable estadística $X$.
+
+La distribución de frecuencias permite determinar cuántas observaciones corresponden a cada valor o categoría de la variable.
+
+**Elementos de una Distribución de Frecuencias**
+
+Una tabla de frecuencias puede contener las siguientes columnas:
+
+```{=html}
+<style>
+.tabla-frecuencias {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-frecuencias th {
+  background-color: #FFB6C1;
+  color: #000000;
+  padding: 8px;
+  text-align: center;
+}
+
+.tabla-frecuencias td {
+  background-color: #FFF0F3;
+  color: #000000;
+  padding: 8px;
+  text-align: center;
+}
+
+.tabla-frecuencias th,
+.tabla-frecuencias td {
+  border: 1px solid #D3D3D3;
+}
+</style>
+```
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+| Símbolo | Nombre | Interpretación |
+|------------------------|------------------------|------------------------|
+| *x~i~* | Valor o categoría | Valor observado de la variable |
+| *f~i~* | Frecuencia absoluta | Número de veces que aparece *x~i~* |
+| *F~i~* | Frecuencia absoluta acumulada | Número de observaciones hasta *x~i~* |
+| *h~i~* | Frecuencia relativa | Proporción de observaciones correspondiente a *x~i~* |
+| *H~i~* | Frecuencia relativa acumulada | Proporción acumulada hasta *x~i~* |
+| \% | Porcentaje | Frecuencia relativa expresada en porcentaje |
+:::
+
+**Frecuencia absoluta**
+
+La **frecuencia absoluta** de un valor $x_i$, representada por $f_i$, corresponde al número de veces que dicho valor aparece en el conjunto de datos.
+
+Se cumple:
+
+$$\sum_{i=1}^{k} f_i=n$$
+
+donde:
+
+- $k$ = número de valores o categorías.
+- $f_i$ = frecuencia absoluta.
+- $n$ = tamaño de la muestra.
+
+**Ejemplo**
+
+Supongamos que se consulta a 20 ciudadanos sobre el número de trámites realizados durante el último año:
+
+```{r}
+tramites <- c(
+  1,2,1,3,2,4,1,2,3,1,
+  2,3,2,1,4,2,3,1,2,3
+)
+
+table(tramites)
+```
+
+La función `table()` permite obtener las frecuencias absolutas.
+
+**Frecuencia absoluta acumulada**
+
+La **frecuencia absoluta acumulada** se representa mediante $F_i$ y corresponde a la suma progresiva de las frecuencias absolutas.
+
+Se calcula mediante:
+
+$$F_i=\sum_{j=1}^{i}f_j$$
+
+Por tanto:
+
+$$F_1=f_1$$
+
+$$F_2=f_1+f_2$$
+
+$$F_3=f_1+f_2+f_3$$
+
+y así sucesivamente.
+
+La última frecuencia acumulada debe ser igual al tamaño de la muestra:
+
+$$F_k=n$$
+
+**En R**
+
+```{r}
+freq <- table(tramites)
+
+freq_abs_acum <- cumsum(freq)
+
+freq_abs_acum
+```
+
+La función `cumsum()` calcula sumas acumuladas.
+
+**Frecuencia relativa**
+
+La **frecuencia relativa** indica la proporción de observaciones que corresponde a cada valor o categoría.
+
+Se representa mediante $h_i$ y se calcula como:
+
+$$h_i=\frac{f_i}{n}$$
+
+La suma de todas las frecuencias relativas debe ser:
+
+$$\sum_{i=1}^{k}h_i=1$$
+
+**En porcentaje**
+
+Para expresar la frecuencia relativa como porcentaje:
+
+$$p_i=h_i\times100$$
+
+Por ejemplo, si:
+
+$$h_i=0.25$$
+
+entonces:
+
+$$p_i=0.25(100)=25\%$$
+
+**Frecuencia relativa acumulada**
+
+La frecuencia relativa acumulada se representa mediante $H_i$.
+
+Se calcula mediante:
+
+$$H_i=\sum_{j=1}^{i}h_j$$
+
+También puede calcularse directamente como:
+
+$$H_i=\frac{F_i}{n}$$
+
+La última frecuencia relativa acumulada debe ser:
+
+$$H_k=1$$
+
+o equivalentemente:
+
+$$H_k=100\%$$
+
+**Tabla de frecuencias completa**
+
+Una tabla de frecuencias para una variable cuantitativa discreta puede estructurarse así:
+
+```{=html}
+<style>
+.tabla-frecuencias-2 {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-frecuencias-2 th,
+.tabla-frecuencias-2 td {
+  background-color: #FFF0F3;
+  color: #000000;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #D3D3D3;
+}
+</style>
+```
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+| *x~i~* | *f~i~* | *F~i~* | *h~i~* | *H~i~* | \%        |
+|--------|--------|--------|--------|--------|-----------|
+| *x~1~* | *f~1~* | *F~1~* | *h~1~* | *H~1~* | 100*h~1~* |
+| *x~2~* | *f~2~* | *F~2~* | *h~2~* | *H~2~* | 100*h~2~* |
+| ⋮      | ⋮      | ⋮      | ⋮      | ⋮      | ⋮         |
+| *x~k~* | *f~k~* | *n*    | 1      | 1      | 100       |
+:::
+
+**Construcción de una tabla de frecuencias en R**
+
+Una forma sencilla de construir una tabla completa es:
+
+```{r}
+frecuencias <- as.data.frame(table(tramites))
+
+names(frecuencias) <- c("Valor", "fi")
+
+frecuencias$Fi <- cumsum(frecuencias$fi)
+
+frecuencias$hi <- frecuencias$fi / sum(frecuencias$fi)
+
+frecuencias$Hi <- cumsum(frecuencias$hi)
+
+frecuencias$Porcentaje <- frecuencias$hi * 100
+
+frecuencias
+```
+
+Para redondear:
+
+```{r}
+frecuencias$hi <- round(frecuencias$hi, 4)
+
+frecuencias$Hi <- round(frecuencias$Hi, 4)
+
+frecuencias$Porcentaje <- round(
+  frecuencias$Porcentaje, 2
+)
+
+frecuencias
+```
+
+**Distribuciones de frecuencia para variables cualitativas**
+
+Cuando la variable es cualitativa, los valores representan categorías.
+
+**Ejemplo**
+
+Supongamos una encuesta realizada a 30 ciudadanos sobre el nivel de satisfacción con un servicio público:
+
+```{r}
+satisfaccion <- c(
+  "Alta","Media","Baja","Alta","Media",
+  "Alta","Baja","Media","Alta","Alta",
+  "Media","Baja","Alta","Media","Alta",
+  "Baja","Media","Alta","Media","Alta",
+  "Baja","Alta","Media","Alta","Media",
+  "Baja","Alta","Media","Alta","Media"
+)
+
+table(satisfaccion)
+```
+
+La tabla puede complementarse con porcentajes:
+
+```{r}
+prop.table(table(satisfaccion))
+```
+
+Y expresarse en porcentaje:
+
+```{r}
+round(prop.table(table(satisfaccion)) * 100, 2)
+```
+
+**Representación gráfica de una distribución unidimensional**
+
+La elección del gráfico depende del tipo de variable.
+
+```{=html}
+<style>
+.tabla-graficos {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla-graficos th {
+  background-color: #FFB6C1;
+  color: #000000;
+  padding: 8px;
+  text-align: center;
+}
+
+.tabla-graficos td {
+  background-color: #FFF0F3;
+  color: #000000;
+  padding: 8px;
+  text-align: center;
+}
+
+.tabla-graficos th,
+.tabla-graficos td {
+  border: 1px solid #D3D3D3;
+}
+</style>
+```
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+| Tipo de variable      | Gráfico recomendado               |
+|-----------------------|-----------------------------------|
+| Cualitativa nominal   | Barras                            |
+| Cualitativa ordinal   | Barras ordenadas                  |
+| Cuantitativa discreta | Barras                            |
+| Cuantitativa continua | Histograma                        |
+| Cuantitativa          | Polígono de frecuencias           |
+| Cuantitativa          | Ojiva para frecuencias acumuladas |
+:::
+
+**Gráfico de barras**
+
+```{r}
+#| warning: false
+#| message: false
+
+library(ggplot2)
+
+ggplot(
+  data.frame(satisfaccion),
+  aes(x = satisfaccion, fill = factor(satisfaccion))
+) +
+  geom_bar(
+    color = NA,
+    show.legend = FALSE
+  ) +
+  scale_fill_manual(
+    values = rep(c("#FFB6C1", "#FFC0CB"), length.out = length(unique(satisfaccion)))
+  ) +
+  labs(
+    title = "Nivel de satisfacción de los ciudadanos",
+    x = "Nivel de satisfacción",
+    y = "Frecuencia"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.line = element_line(color = "black")
+  )
+```
+
+**Distribución de Frecuencias para Datos Agrupados**
+
+Cuando una variable cuantitativa continua presenta muchos valores diferentes, puede ser conveniente agruparlos en **intervalos de clase**.
+
+Por ejemplo:
+
+$$[20,30),\quad [30,40),\quad [40,50),\quad [50,60)$$
+
+Cada intervalo contiene un conjunto de valores.
+
+**Elementos de una Distribución Agrupada**
+
+Para cada intervalo pueden calcularse:
+
+- Límite inferior.
+- Límite superior.
+- Marca de clase.
+- Frecuencia absoluta.
+- Frecuencia acumulada.
+- Frecuencia relativa.
+- Frecuencia relativa acumulada.
+
+La **marca de clase** se calcula mediante:
+
+$$x_i=\frac{L_i+U_i}{2}$$
+
+donde:
+
+- $L_i$ = límite inferior.
+- $U_i$ = límite superior.
+
+**Número de intervalos**
+
+Una regla frecuente para determinar aproximadamente el número de clases es la **regla de Sturges**:
+
+$$k=1+3.322\log_{10}(n)$$
+
+donde $n$ representa el tamaño de la muestra.
+
+Otra expresión equivalente es:
+
+$$k=1+\log_2(n)$$
+
+Una vez determinado $k$, puede calcularse la amplitud aproximada:
+
+$$A=\frac{R}{k}$$
+
+donde:
+
+$$R=X_{\max}-X_{\min}$$
+
+es el rango.
+
+**Ejemplo con datos cuantitativos**
+
+Supongamos que se dispone de los ingresos mensuales de 40 usuarios, expresados en millones de pesos:
+
+```{r}
+set.seed(123)
+
+ingresos <- round(
+  runif(40, 1.2, 6.5),
+  2
+)
+
+ingresos
+```
+
+Podemos construir intervalos mediante `cut()`:
+
+```{r}
+intervalos <- cut(
+  ingresos,
+  breaks = c(1, 2, 3, 4, 5, 6, 7),
+  right = FALSE
+)
+
+table(intervalos)
+```
+
+**Histograma**
+
+Para representar una variable cuantitativa continua:
+
+```{r}
+#| warning: false
+#| message: false
+
+library(ggplot2)
+
+ggplot( 
+  data.frame(ingresos), 
+  aes(x = ingresos) 
+) + 
+  geom_histogram( 
+    aes(fill = factor(after_stat(x))),
+    bins = 6,
+    color = NA,
+    show.legend = FALSE
+  ) + 
+  scale_fill_manual(
+    values = rep(c("#FFB6C1", "#FFC0CB"), length.out = 6)
+  ) + 
+  labs( 
+    title = "Distribución de los ingresos mensuales", 
+    x = "Ingresos (millones de pesos)", 
+    y = "Frecuencia" 
+  ) + 
+  theme_minimal() +
+  theme(
+    axis.line = element_line(color = "black")
+  )
+```
+
+**Distribución de Frecuencias Bidimensional**
+
+**Concepto**
+
+Una **distribución de frecuencias bidimensional** estudia simultáneamente dos variables estadísticas.
+
+Sean:
+
+$$X \quad \text{y} \quad Y$$
+
+dos variables observadas sobre los mismos individuos.
+
+El objetivo consiste en analizar cómo se distribuyen conjuntamente los valores de ambas variables.
+
+Por ejemplo:
+
+- Edad y satisfacción.
+- Nivel educativo y satisfacción.
+- Estrato y acceso a un programa social.
+- Modalidad de atención y satisfacción.
+- Género y tipo de servicio utilizado.
+
+**Tabla de contingencia**
+
+Cuando las dos variables son cualitativas o categóricas, la distribución bidimensional suele representarse mediante una **tabla de contingencia**.
+
+Supongamos que se estudian:
+
+- $X$: modalidad de atención.
+- $Y$: nivel de satisfacción.
+
+La tabla puede tener la siguiente estructura:
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+| Modalidad  |     Alta |    Media |     Baja |    Total |
+|------------|---------:|---------:|---------:|---------:|
+| Presencial | $n_{11}$ | $n_{12}$ | $n_{13}$ | $n_{1.}$ |
+| Virtual    | $n_{21}$ | $n_{22}$ | $n_{23}$ | $n_{2.}$ |
+| **Total**  | $n_{.1}$ | $n_{.2}$ | $n_{.3}$ |      $n$ |
+:::
+
+Los valores $n_{ij}$ representan las **frecuencias conjuntas**.
+
+**Frecuencia conjunta**
+
+La frecuencia conjunta $n_{ij}$ corresponde al número de individuos que simultáneamente presentan:
+
+$$X=x_i$$
+
+y
+
+$$Y=y_j$$
+
+Por ejemplo:
+
+$$n_{23}$$
+
+representaría el número de individuos pertenecientes a la categoría 2 de $X$ y a la categoría 3 de $Y$.
+
+**Frecuencias marginales**
+
+Las **frecuencias marginales** se obtienen sumando las frecuencias de las filas o columnas.
+
+- Frecuencia marginal de X
+
+$$n_{i.}=\sum_j n_{ij}$$
+
+- Frecuencia marginal de Y
+
+$$n_{.j}=\sum_i n_{ij}$$
+
+El total general es:
+
+$$n=\sum_i\sum_j n_{ij}$$
+
+**Frecuencias relativas bidimensionales**
+
+La frecuencia relativa conjunta se calcula como:
+
+$$h_{ij}=\frac{n_{ij}}{n}$$
+
+y cumple:
+
+$$\sum_i\sum_jh_{ij}=1$$
+
+En porcentaje:
+
+$$p_{ij}=100h_{ij}$$
+
+**Frecuencias condicionales**
+
+Las frecuencias condicionales permiten analizar la distribución de una variable **dentro de una categoría específica de la otra variable**.
+
+Si queremos analizar $Y$ condicionado a $X=x_i$:
+
+$$h_{j|i}=
+\frac{n_{ij}}{n_{i.}}$$
+
+Si queremos analizar $X$ condicionado a $Y=y_j$:
+
+$$h_{i|j}=
+\frac{n_{ij}}{n_{.j}}$$
+
+Las frecuencias condicionales son fundamentales para estudiar posibles relaciones entre dos variables.
+
+**Ejemplo de tabla bidimensional en R**
+
+Consideremos una encuesta realizada a 100 ciudadanos:
+
+```{r}
+datos <- data.frame(
+  Modalidad = c(
+    "Presencial","Presencial","Presencial",
+    "Virtual","Virtual","Virtual"
+  ),
+  Satisfaccion = c(
+    "Alta","Media","Baja",
+    "Alta","Media","Baja"
+  ),
+  Frecuencia = c(
+    30,15,5,
+    20,20,10
+  )
+)
+
+datos
+```
+
+Para obtener una tabla de contingencia:
+
+```{r}
+tabla <- xtabs(
+  Frecuencia ~ Modalidad + Satisfaccion,
+  data = datos
+)
+
+tabla
+```
+
+El resultado conceptual es:
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+| Modalidad      | Alta | Media | Baja |
+|----------------|------|-------|------|
+| **Presencial** | 30   | 15    | 5    |
+| **Virtual**    | 20   | 20    | 10   |
+:::
+
+**Totales marginales en R**
+
+Podemos obtener los totales de filas y columnas mediante:
+
+```{r}
+addmargins(tabla)
+```
+
+También:
+
+```{r}
+margin.table(tabla, 1)
+```
+
+permite obtener las frecuencias marginales de las filas.
+
+Mientras:
+
+```{r}
+margin.table(tabla, 2)
+```
+
+obtiene las frecuencias marginales de las columnas.
+
+**Frecuencias relativas en R**
+
+Para obtener las frecuencias relativas conjuntas:
+
+```{r}
+prop.table(tabla)
+```
+
+Para obtener porcentajes:
+
+```{r}
+round(prop.table(tabla) * 100, 2)
+```
+
+**Porcentajes por fila**
+
+Para estudiar la distribución de la satisfacción dentro de cada modalidad:
+
+```{r}
+prop.table(tabla, 1)
+```
+
+En porcentaje:
+
+```{r}
+round(prop.table(tabla, 1) * 100, 2)
+```
+
+La opción `margin = 1` indica que los porcentajes se calculan **por fila**.
+
+**Porcentajes por columna**
+
+Para estudiar la distribución de la modalidad dentro de cada nivel de satisfacción:
+
+```{r}
+prop.table(tabla, 2)
+```
+
+En porcentaje:
+
+```{r}
+round(prop.table(tabla, 2) * 100, 2)
+```
+
+La opción `margin = 2` indica que los porcentajes se calculan **por columna**.
+
+**Interpretación de una Tabla Bidimensional**
+
+Supongamos que para los usuarios de modalidad presencial se obtiene:
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+| Modalidad      | Alta | Media | Baja |
+|----------------|------|-------|------|
+| **Presencial** | 30   | 15    | 5    |
+:::
+
+El total de usuarios presenciales es:
+
+$$30+15+5=50$$
+
+Por tanto, la proporción de usuarios presenciales con satisfacción alta es:
+
+$$\frac{30}{50}=0.60$$
+
+o:
+
+$$60\%$$
+
+Una interpretación estadística sería:
+
+> El 60 % de los usuarios atendidos mediante la modalidad presencial presenta un nivel de satisfacción alto.
+
+Es importante distinguir este resultado de un porcentaje calculado sobre el total general de la muestra.
+
+**Visualización de una distribución bidimensional**
+
+Una tabla de contingencia puede representarse mediante un gráfico de barras.
+
+```{r}
+#| warning: false
+#| message: false
+
+library(ggplot2)
+
+datos_grafico <- data.frame(
+  Modalidad = rep(
+    c("Presencial", "Virtual"),
+    each = 3
+  ),
+  Satisfaccion = rep(
+    c("Alta", "Media", "Baja"),
+    2
+  ),
+  Frecuencia = c(
+    30, 15, 5,
+    20, 20, 10
+  )
+)
+
+ggplot(
+  datos_grafico,
+  aes(
+    x = Modalidad,
+    y = Frecuencia,
+    fill = Satisfaccion
+  )
+) +
+  geom_col(
+    position = "dodge",
+    color = NA
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Alta" = "#E65C9C",   # Rosado fucsia/oscuro bien marcado
+      "Media" = "#FF8DA1",  # Rosado medio vibrante
+      "Baja" = "#FFC0CB"    # Rosado pastel claro y visible
+    )
+  ) +
+  labs(
+    title = "Satisfacción según modalidad de atención",
+    x = "Modalidad",
+    y = "Frecuencia"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.line = element_line(color = "black")
+  )
+```
+
+**Gráfico de barras apiladas**
+
+También puede utilizarse:
+
+```{r}
+#| warning: false
+#| message: false
+
+library(ggplot2)
+
+ggplot(
+  datos_grafico,
+  aes(
+    x = Modalidad,
+    y = Frecuencia,
+    fill = Satisfaccion
+  )
+) +
+  geom_col(
+    color = NA
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Alta" = "#E65C9C",   # Rosado fucsia/oscuro bien marcado
+      "Media" = "#FF8DA1",  # Rosado medio vibrante
+      "Baja" = "#FFC0CB"    # Rosado pastel claro y visible
+    )
+  ) +
+  labs(
+    title = "Distribución de la satisfacción según modalidad",
+    x = "Modalidad",
+    y = "Frecuencia"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.line = element_line(color = "black")
+  )
+```
+
+**Barras proporcionales**
+
+Para comparar estructuras porcentuales entre grupos:
+
+```{r}
+#| warning: false
+#| message: false
+
+library(ggplot2)
+
+ggplot(
+  datos_grafico,
+  aes(
+    x = Modalidad,
+    y = Frecuencia,
+    fill = Satisfaccion
+  )
+) +
+  geom_col(
+    position = "fill",
+    color = NA
+  ) +
+  scale_fill_manual(
+    values = c(
+      "Alta" = "#E65C9C",   # Rosado fucsia/oscuro bien marcado
+      "Media" = "#FF8DA1",  # Rosado medio vibrante
+      "Baja" = "#FFC0CB"    # Rosado pastel claro y visible
+    )
+  ) +
+  scale_y_continuous(
+    labels = scales::percent
+  ) +
+  labs(
+    title = "Distribución porcentual de la satisfacción",
+    x = "Modalidad",
+    y = "Porcentaje"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.line = element_line(color = "black")
+  )
+```
+
+Este gráfico resulta especialmente útil cuando los tamaños de los grupos son diferentes.
+
+**Distribución bidimensional y asociación**
+
+Una de las principales aplicaciones de las tablas bidimensionales consiste en estudiar si existe una posible **relación o asociación entre dos variables**.
+
+Por ejemplo:
+
+$$\text{Modalidad de atención}
+\quad\longleftrightarrow\quad
+\text{Satisfacción}$$
+
+Si las distribuciones condicionales son muy diferentes entre las modalidades, puede existir evidencia descriptiva de asociación.
+
+Sin embargo, una diferencia descriptiva no significa necesariamente que exista una asociación estadísticamente significativa.
+
+Para evaluar formalmente la asociación entre dos variables categóricas puede utilizarse, entre otras herramientas, la **prueba chi-cuadrado de independencia**.
+
+**Prueba chi-cuadrado en R**
+
+A partir de una tabla de contingencia:
+
+```{r}
+chisq.test(tabla)
+```
+
+La hipótesis nula es:
+
+$$H_0:
+\text{Las variables son independientes}$$
+
+Mientras que la hipótesis alternativa es:
+
+$$H_1:
+\text{Las variables no son independientes}$$
+
+La decisión estadística se basa generalmente en el valor-p.
+
+Si:
+
+$$p<\alpha$$
+
+se rechaza $H_0$.
+
+Si:
+
+$$p\geq\alpha$$
+
+no se rechaza $H_0$.
+
+Es habitual utilizar:
+
+$$\alpha=0.05$$
+
+**Diferencia entre Distribución Unidimensional y Bidimensional**
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+| Característica | Unidimensional | Bidimensional |
+|------------------------|------------------------|------------------------|
+| Número de variables | 1 | 2 |
+| Objetivo | Describir una variable | Analizar dos variables conjuntamente |
+| Tabla principal | Tabla de frecuencias | Tabla de contingencia |
+| Frecuencia | $f_i$ | $n_{ij}$ |
+| Frecuencia marginal | No aplica | Sí |
+| Frecuencia conjunta | No aplica | Sí |
+| Frecuencia condicional | No aplica | Sí |
+| Asociación | No | Sí |
+| Chi-cuadrado | No necesariamente | Sí, para variables categóricas |
+:::
+
+**Aplicación y Herramientas de RStudio**
+
+**Funciones fundamentales de R**
+
+Las siguientes funciones son especialmente útiles para trabajar con distribuciones de frecuencias:
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+| Función                | Utilidad                          |
+|------------------------|-----------------------------------|
+| **`table()`**          | Frecuencias absolutas             |
+| **`prop.table()`**     | Frecuencias relativas             |
+| **`cumsum()`**         | Frecuencias acumuladas            |
+| **`xtabs()`**          | Tablas de contingencia            |
+| **`addmargins()`**     | Totales marginales                |
+| **`margin.table()`**   | Frecuencias marginales            |
+| **`cut()`**            | Agrupar variables cuantitativas   |
+| **`ggplot()`**         | Visualización                     |
+| **`geom_bar()`**       | Gráfico de barras                 |
+| **`geom_col()`**       | Barras con frecuencias existentes |
+| **`geom_histogram()`** | Histograma                        |
+| **`chisq.test()`**     | Prueba chi-cuadrado               |
+:::
+
+**Función general para construir una tabla de frecuencias**
+
+En R podemos crear una función reutilizable:
+
+```{r}
+tabla_frecuencias <- function(x) {
+  
+  fi <- table(x)
+  
+  tabla <- data.frame(
+    Valor = names(fi),
+    fi = as.vector(fi)
+  )
+  
+  tabla$Fi <- cumsum(tabla$fi)
+  
+  tabla$hi <- tabla$fi / sum(tabla$fi)
+  
+  tabla$Hi <- cumsum(tabla$hi)
+  
+  tabla$Porcentaje <- tabla$hi * 100
+  
+  tabla
+}
+```
+
+Aplicación:
+
+```{r}
+tabla_frecuencias(satisfaccion)
+```
+
+**Ejemplo aplicado a la Educación**
+
+Supongamos que una institución educativa realiza una encuesta a estudiantes para estudiar la satisfacción con el proceso educativo.
+
+Se registran las variables:
+
+Edad Modalidad Satisfaccion Grado Numero_actividades
+
+Una distribución unidimensional puede responder:
+
+¿Cuál es el nivel de satisfacción predominante entre los estudiantes?
+
+Mientras que una distribución bidimensional puede responder:
+
+¿Cómo se distribuye el nivel de satisfacción según la modalidad de aprendizaje?
+
+La primera pregunta utiliza una distribución de frecuencias unidimensional.
+
+La segunda utiliza una distribución de frecuencias bidimensional.
+
+**Flujo de trabajo recomendado en RStudio**
+
+Un análisis profesional puede seguir la siguiente secuencia:
+
+``` text
+Importación de datos
+        ↓
+Exploración de variables
+        ↓
+Identificación del tipo de variable
+        ↓
+Distribución unidimensional
+        ↓
+Frecuencias absolutas y relativas
+        ↓
+Representación gráfica
+        ↓
+Distribución bidimensional
+        ↓
+Frecuencias conjuntas y marginales
+        ↓
+Porcentajes condicionales
+        ↓
+Representación gráfica
+        ↓
+Análisis de asociación
+        ↓
+Interpretación estadística
+```
+
+**Recomendaciones para el análisis estadístico**
+
+Al construir e interpretar una distribución de frecuencias es importante:
+
+1.  Identificar correctamente el tipo de variable.
+2.  Diferenciar variables cualitativas y cuantitativas.
+3.  Utilizar frecuencias absolutas cuando interesa conocer cantidades.
+4.  Utilizar frecuencias relativas o porcentajes cuando se desean comparar grupos.
+5.  Emplear frecuencias acumuladas cuando la variable posee un orden natural.
+6.  Para datos continuos con muchos valores, considerar agrupación en intervalos.
+7.  En tablas bidimensionales, especificar claramente si los porcentajes se calculan por filas, columnas o sobre el total.
+8.  Complementar las tablas con representaciones gráficas apropiadas.
+9.  No confundir asociación descriptiva con causalidad.
+10. Cuando sea pertinente, complementar el análisis descriptivo con pruebas estadísticas.
+
+# .Conclusiones
+
+Las **distribuciones de frecuencias unidimensionales** permiten organizar y resumir la información correspondiente a una sola variable mediante frecuencias absolutas, acumuladas, relativas y porcentuales.
+
+Las **distribuciones de frecuencias bidimensionales** permiten analizar conjuntamente dos variables y constituyen una herramienta fundamental para estudiar patrones de asociación mediante frecuencias conjuntas, marginales y condicionales.
+
+En **R/RStudio**, funciones como `table()`, `prop.table()`, `cumsum()`, `xtabs()` y `ggplot2` permiten automatizar gran parte del proceso de construcción, análisis y visualización de las distribuciones de frecuencias.
+
+El análisis estadístico debe ir más allá de la construcción mecánica de tablas: es fundamental interpretar los resultados dentro del contexto de investigación y seleccionar correctamente los porcentajes, gráficos y procedimientos estadísticos de acuerdo con el tipo de variables estudiadas.
+
+**Resumen de fórmulas**
+
+*Frecuencia absoluta*
+
+$$f_i$$
+
+*Frecuencia absoluta acumulada*
+
+$$F_i=\sum_{j=1}^{i}f_j$$
+
+*Frecuencia relativa*
+
+$$h_i=\frac{f_i}{n}$$
+
+*Frecuencia relativa acumulada*
+
+$$H_i=\sum_{j=1}^{i}h_j$$
+
+*Porcentaje*
+
+$$p_i=100h_i$$
+
+*Frecuencia conjunta*
+
+$$n_{ij}$$
+
+*Frecuencia marginal de X*
+
+$$n_{i.}=\sum_jn_{ij}$$
+
+*Frecuencia marginal de Y*
+
+$$n_{.j}=\sum_in_{ij}$$
+
+*Frecuencia relativa conjunta*
+
+$$h_{ij}=\frac{n_{ij}}{n}$$
+
+*Frecuencia condicional*
+
+$$h_{j|i}=\frac{n_{ij}}{n_{i.}}$$
+
+*Regla de Sturges*
+
+$$k=1+3.322\log_{10}(n)$$
+
+*Amplitud*
+
+$$A=\frac{R}{k}$$
+
+*Rango*
+
+$$R=X_{\max}-X_{\min}$$
+
+*Marca de clase*
+
+$$x_i=\frac{L_i+U_i}{2}$$
+
+# .Leer el Dataset
+
+```{r}
+educacion <- read_excel("Datos/educacion.xlsx")
+```
+
+# .Conocer el Dataset
+
+*Mostrar algunas filas del dataset*
+
+```{r}
+head(educacion, 4)
+```
+
+*Número de variables*
+
+```{r}
+educacion %>% names %>% length()
+```
+
+*Nombres de las variables*
+
+```{r}
+names(educacion)
+```
+
+*Estructura de las variables*
+
+```{r}
+glimpse(educacion)
+```
+
+*Transformar las variables*
+
+```{r}
+educacion$Genero <- as.factor(educacion$Genero)
+
+educacion$Nivel_Educativo <- factor(educacion$Nivel_Educativo, levels = c("Universidad", "Secundaria"), ordered = TRUE)
+                                    
+educacion$Estrato <- factor(educacion$Estrato, 
+                         levels = c("Bajo", "Medio", "Alto"), ordered = TRUE)
+
+educacion$Tecnologia <- factor(educacion$Tecnologia, 
+                         levels = c("Bajo", "Medio", "Alto"), ordered = TRUE)
+
+educacion$Satisfaccion <- factor(educacion$Satisfaccion, 
+                         levels = c("Muy alta", "Alta", "Media", "Baja", "Muy baja"), ordered = TRUE)
+
+```
+
+*Nueva estructura de las variables*
+
+```{r}
+glimpse(educacion)
+```
+
+# .Tablas y Gráficos
+
+## .Variable Nominal
+
+::: callout-note
+## La variable nominal tiene solo frecuencia absoluta, relativa y porcentaje.
+:::
+
+**Análisis de Frecuencias del Género de los Encuestados**
+
+:::: panel-tabset
+## Tabla
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+```{r}
+# Crear la tabla original
+tabla <- tibble(GENERO = educacion$Genero) %>% 
+  group_by(GENERO) %>% 
+  summarise(fi = n()) %>%
+  mutate(
+    hi = round(fi/sum(fi), 4), 
+    Porcentaje = paste0(hi*100, "%"),)
+
+# Convertir las columnas a character para evitar conflictos
+tabla <- tabla %>% mutate(
+  GENERO = as.character(GENERO))
+
+# Añadir la fila de totales
+totales <- tibble(
+  GENERO = "Total",
+  fi = sum(tabla$fi),
+  hi = round(sum(tabla$hi), 4),
+  Porcentaje = paste0(round(sum(tabla$hi) * 100, 2), "%"))
+
+# Combinar la tabla con los totales
+tabla_final <- bind_rows(tabla, totales)
+
+# Mostrar la tabla final con kable
+tabla_final %>% 
+  knitr::kable(
+    col.names = c("Género", "$f_i$", "$h_i$", "Porcentaje"), 
+    align = c("l", "c", "c", "c"))
+```
+:::
+
+## Barras
+
+```{r}
+# Calcular los porcentajes de cada categoría en la variable Genero
+genero_counts <- educacion %>%
+  dplyr::count(Genero) %>%
+  mutate(porcentaje = n / sum(n) * 100)
+
+# Crear el diagrama de barras
+ggplot(genero_counts, aes(x = Genero, y = porcentaje, fill = Genero)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("#FFC0CB", "#FF8DA1")) +
+  labs(
+    title = "Distribución Porcentual del Género de los Encuestados",
+    x = "Género",
+    y = "Porcentaje"
+  ) +
+  geom_text(
+    aes(label = sprintf("%.1f%%", porcentaje)),
+    vjust = -0.5,
+    color = "black",
+    size = 3.5
+  ) +
+  theme_classic() +
+  theme(legend.position = "none")
+```
+
+## Sectores
+
+```{r}
+# Cargar las librerías necesarias
+library(ggplot2)
+library(dplyr)
+library(readxl)
+
+# Calcular los porcentajes de cada categoría en la variable Genero
+genero_counts <- educacion %>%
+  dplyr::count(Genero) %>%
+  mutate(porcentaje = n / sum(n) * 100)
+
+# Crear el diagrama circular
+ggplot(genero_counts, aes(x = "", y = porcentaje, fill = Genero)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y") +
+  scale_fill_manual(values = c("#FFC0CB", "#FF8DA1")) +
+  labs(title = "Distribución Porcentual del Género de los Encuestados") +
+  theme_minimal() +
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.grid = element_blank(),
+        axis.text.x = element_blank()) +
+  geom_text(aes(label = sprintf("%.1f%%", porcentaje)), 
+            position = position_stack(vjust = 0.5), 
+            color = "white", 
+            size = 4)
+```
+
+## Interpretación
+
+La distribución por género de los 300 estudiantes encuestados de la Universidad del Tolima muestra una composición relativamente equilibrada. El **género femenino** presenta la mayor frecuencia, con 161 estudiantes, equivalentes al **53,67 %**, mientras que el género masculino está conformado por 139 estudiantes, correspondientes al **46,33 %**.
+
+La diferencia entre ambos grupos es de **7,34 puntos porcentuales**, lo que evidencia una ligera predominancia femenina. Sin embargo, ambos géneros cuentan con una representación significativa dentro de la muestra analizada.
+::::
+
+## .Variable Ordinal
+
+**Distribución de Frecuencias de los Encuestados según el Nivel Educativo**
+
+::: callout-tip
+## La variable ordinal tiene los cuatro tipos de frecuencias
+:::
+
+:::: panel-tabset
+## Tabla
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+```{r}
+# Crear la tabla original
+tabla <- tibble(Educativo = educacion$Nivel_Educativo) %>% 
+  mutate(
+    Educativo = factor(
+      Educativo,
+      levels = c("Secundaria", "Universidad", NA),
+      exclude = NULL
+    )
+  ) %>%
+  group_by(Educativo, .drop = FALSE) %>% 
+  summarise(fi = n(), .groups = "drop") %>%
+  mutate(
+    hi = round(fi/sum(fi), 4), 
+    Porcentaje = paste0(hi*100, "%"),
+    Fi = cumsum(fi),
+    Hi = cumsum(hi)
+  )
+
+# Convertir las columnas Educativo, Fi, y Hi a character para evitar conflictos
+tabla <- tabla %>% mutate(
+  Educativo = as.character(Educativo),
+  Fi = as.character(Fi),
+  Hi = as.character(Hi)
+)
+
+# Añadir la fila de totales, dejando Fi y Hi vacíos
+totales <- tibble(
+  Educativo = "Total",
+  fi = sum(tabla$fi),
+  hi = round(sum(tabla$hi), 4),
+  Porcentaje = paste0(round(sum(tabla$hi) * 100, 2), "%"),
+  Fi = "",
+  Hi = ""
+)
+
+# Combinar la tabla con los totales
+tabla_final <- bind_rows(tabla, totales)
+
+# Mostrar la tabla final con kable
+tabla_final %>% 
+  knitr::kable(
+    col.names = c("Nivel Escolaridad", "fi", "hi", "Porcentaje", "Fi", "Hi"), 
+    align = c("l", "c", "c", "c", "c", "c")
+  )
+```
+:::
+
+## Barras
+
+```{r}
+educativo_counts <- educacion %>%
+  mutate(
+    Nivel_Educativo = factor(
+      Nivel_Educativo,
+      levels = c("Secundaria", "Universidad", NA),
+      exclude = NULL
+    )
+  ) %>%
+  dplyr::count(Nivel_Educativo, .drop = FALSE) %>%
+  mutate(porcentaje = n / sum(n) * 100)
+
+ggplot(educativo_counts,
+       aes(x = Nivel_Educativo,
+           y = porcentaje,
+           fill = Nivel_Educativo)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(
+    values = c("#E65C9C", "#FF8DA1"),
+    na.value = "#FFC0CB"
+  ) +
+  labs(
+    title = "Distribución Porcentual del Nivel Educativo",
+    x = "Nivel Educativo",
+    y = "Porcentaje"
+  ) +
+  theme_classic() +
+  theme(legend.position = "none") +
+  geom_text(
+    aes(label = sprintf("%.1f%%", porcentaje)),
+    vjust = -0.5,
+    color = "black",
+    size = 3.5
+  )
+```
+
+## Interpretación
+
+La distribución del nivel educativo de los 300 encuestados presenta una composición relativamente homogénea entre las categorías registradas. La mayor proporción corresponde a **Secundaria**, con 105 participantes, equivalentes al **35 %** de la muestra, seguida por **Universidad**, con 102 encuestados (**34 %**). Por su parte, la categoría **NA** agrupa a 93 participantes, lo que representa el **31 %** del total.
+
+En términos acumulados, las categorías Universidad y Secundaria concentran conjuntamente el **69 %** de los encuestados, mientras que al incorporar la categoría NA se alcanza el **100 %** de la muestra. En general, no se observan diferencias porcentuales amplias entre las categorías, lo que evidencia una distribución relativamente equilibrada del nivel educativo reportado por los participantes.
+::::
+
+**Distribución de Frecuencias de los Encuestados según el Estrato**
+
+:::: panel-tabset
+## Tabla
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+```{r}
+# Crear la tabla original
+tabla <- tibble(ESTRATO = educacion$Estrato) %>% 
+  group_by(ESTRATO) %>% 
+  summarise(fi = n()) %>%
+  mutate(
+    hi = round(fi/sum(fi), 4), 
+    Porcentaje = paste0(hi*100, "%"),
+    Fi = cumsum(fi),
+    Hi = cumsum(hi)
+  )
+
+# Convertir las columnas Fucion, Fi, y Hi a character para evitar conflictos
+tabla <- tabla %>% mutate(
+  ESTRATO = as.character(ESTRATO),
+  Fi = as.character(Fi),
+  Hi = as.character(Hi)
+)
+
+# Añadir la fila de totales, dejando Fi y Hi vacíos
+totales <- tibble(
+  ESTRATO = "Total",
+  fi = sum(tabla$fi),
+  hi = round(sum(tabla$hi), 4),
+  Porcentaje = paste0(round(sum(tabla$hi) * 100, 2), "%"),
+  Fi = "",  # Puedes dejar en blanco o usar un valor numérico
+  Hi = ""   # Puedes dejar en blanco o usar un valor numérico
+)
+
+# Combinar la tabla con los totales
+tabla_final <- bind_rows(tabla, totales)
+
+# Mostrar la tabla final con kable
+tabla_final %>% 
+  knitr::kable(
+    col.names = c("Estrato", "fi", "hi", "Porcentaje", "Fi", "Hi"), 
+    align = c("l", "c", "c", "c", "c", "c")
+  )
+```
+:::
+
+## Barras
+
+```{r}
+Estrato_counts <- educacion %>%
+  dplyr::count(Estrato) %>%
+  mutate(porcentaje = n / sum(n) * 100)
+
+ggplot(Estrato_counts,
+       aes(x = Estrato,
+           y = porcentaje,
+           fill = Estrato)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(
+    values = c("#FFC0CB", "#FF8DA1", "#E65C9C")
+  ) +
+  labs(
+    title = "Distribución Porcentual del Estrato de los Encuestados",
+    x = "Estrato",
+    y = "Porcentaje"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  geom_text(
+    aes(label = sprintf("%.1f%%", porcentaje)),
+    vjust = -0.5,
+    color = "black",
+    size = 3.5
+  )
+```
+
+## Interpretación
+
+La distribución del estrato socioeconómico de los 300 estudiantes encuestados presenta una composición relativamente equilibrada entre las categorías analizadas. La mayor proporción corresponde al **estrato medio**, con 102 estudiantes, equivalentes al **34 %** de la muestra, seguido por el estrato alto con 101 estudiantes (**33,67 %**) y el estrato bajo con 97 estudiantes (**32,33 %**) del total.
+
+La diferencia entre el estrato con mayor y menor participación es de apenas **1,67 puntos porcentuales**, lo que evidencia una baja variación entre las categorías consideradas. En general, no se observa una predominancia clara de un nivel socioeconómico específico, lo que refleja una **distribución relativamente homogénea** entre los estratos bajo, medio y alto dentro de la muestra estudiada.
+::::
+
+**Distribución de Frecuencias de los Encuestados según su Nivel de Tecnologia**
+
+:::: panel-tabset
+## Tabla
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+```{r}
+# Crear la tabla original
+tabla <- tibble(Tecnologia = educacion$Tecnologia) %>% 
+  group_by(Tecnologia) %>% 
+  summarise(fi = n()) %>%
+  mutate(
+    hi = round(fi / sum(fi), 4), 
+    Porcentaje = paste0(round(hi * 100, 2), "%"),
+    Fi = cumsum(fi),
+    Hi = cumsum(hi)
+  )
+
+# Convertir columnas a character para evitar conflictos
+tabla <- tabla %>% 
+  mutate(
+    Tecnologia = as.character(Tecnologia),
+    Fi = as.character(Fi),
+    Hi = as.character(Hi)
+  )
+
+# Añadir la fila de totales
+totales <- tibble(
+  Tecnologia = "Total",
+  fi = sum(tabla$fi),
+  hi = round(sum(tabla$hi), 4),
+  Porcentaje = paste0(round(sum(tabla$hi) * 100, 2), "%"),
+  Fi = "",
+  Hi = ""
+)
+
+# Combinar tabla y totales
+tabla_final <- bind_rows(tabla, totales)
+
+# Mostrar la tabla final
+tabla_final %>% 
+  knitr::kable(
+    col.names = c(
+      "Tecnología",
+      "fi",
+      "hi",
+      "Porcentaje",
+      "Fi",
+      "Hi"
+    ),
+    align = c("l", "c", "c", "c", "c", "c")
+  )
+```
+:::
+
+## Barras
+
+```{r}
+Tecnologia_counts <- educacion %>%
+  dplyr::count(Tecnologia) %>%
+  mutate(porcentaje = n / sum(n) * 100)
+
+ggplot(Tecnologia_counts,
+       aes(x = Tecnologia,
+           y = porcentaje,
+           fill = Tecnologia)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(
+    values = c("#FFC0CB", "#FF8DA1", "#E65C9C")
+  ) +
+  labs(
+    title = "Distribución Porcentual del Nivel de Tecnología de los Encuestados",
+    x = "Tecnología",
+    y = "Porcentaje"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  geom_text(
+    aes(label = sprintf("%.1f%%", porcentaje)),
+    vjust = -0.5,
+    color = "black",
+    size = 3.5
+  )
+```
+
+## Interpretación
+
+En relación con el nivel de tecnología de los 300 estudiantes encuestados, se observa una mayor concentración en los niveles bajo y medio. El **nivel bajo** presenta la mayor frecuencia, con 112 estudiantes, equivalentes al **37,33 %** de la muestra, seguido por el nivel medio con 108 estudiantes (**36 %**). Por su parte, el nivel alto registra 80 estudiantes, correspondientes al **26,67 %** del total.
+
+De manera acumulada, los niveles bajo y medio reúnen al **73,33 %** de los encuestados. La diferencia entre el nivel bajo y el nivel alto es de **10,66 puntos porcentuales**, lo que evidencia una menor presencia de estudiantes con nivel tecnológico alto. En general, los resultados muestran una **mayor concentración en niveles tecnológicos bajos y medios** dentro de la muestra analizada.
+::::
+
+**Distribución de Frecuencias de los Encuestados según su Nivel de Satisfacción**
+
+:::: panel-tabset
+## Tabla
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+```{r}
+# Crear la tabla original
+tabla <- tibble(Satisfaccion = educacion$Satisfaccion) %>% 
+  group_by(Satisfaccion) %>% 
+  summarise(fi = n()) %>%
+  mutate(
+    hi = round(fi / sum(fi), 4), 
+    Porcentaje = paste0(round(hi * 100, 2), "%"),
+    Fi = cumsum(fi),
+    Hi = cumsum(hi)
+  )
+
+# Convertir columnas a character para evitar conflictos
+tabla <- tabla %>% 
+  mutate(
+    Satisfaccion = as.character(Satisfaccion),
+    Fi = as.character(Fi),
+    Hi = as.character(Hi)
+  )
+
+# Añadir la fila de totales
+totales <- tibble(
+  Satisfaccion = "Total",
+  fi = sum(tabla$fi),
+  hi = round(sum(tabla$hi), 4),
+  Porcentaje = paste0(round(sum(tabla$hi) * 100, 2), "%"),
+  Fi = "",
+  Hi = ""
+)
+
+# Combinar tabla y totales
+tabla_final <- bind_rows(tabla, totales)
+
+# Mostrar la tabla final
+tabla_final %>% 
+  knitr::kable(
+    col.names = c(
+      "Satisfacción",
+      "fi",
+      "hi",
+      "Porcentaje",
+      "Fi",
+      "Hi"
+    ),
+    align = c("l", "c", "c", "c", "c", "c")
+  )
+```
+:::
+
+## Barras
+
+```{r}
+Satisfaccion_counts <- educacion %>%
+  dplyr::count(Satisfaccion) %>%
+  mutate(porcentaje = n / sum(n) * 100)
+
+ggplot(Satisfaccion_counts,
+       aes(x = Satisfaccion,
+           y = porcentaje,
+           fill = Satisfaccion)) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(
+    values = c("#FFC0CB", "#FF8DA1", "#E65C9C", "#F6A5C0", "#D96B9A")
+  ) +
+  labs(
+    title = "Distribución Porcentual de la Satisfacción de los Encuestados",
+    x = "Satisfacción",
+    y = "Porcentaje"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  geom_text(
+    aes(label = sprintf("%.1f%%", porcentaje)),
+    vjust = -0.5,
+    color = "black",
+    size = 3.5
+  )
+```
+
+## Interpretación
+
+Al analizar la variable de satisfacción de los 300 estudiantes encuestados, se observa una distribución relativamente equilibrada entre las categorías consideradas. El **nivel muy alto** presenta la mayor frecuencia, con 67 estudiantes, equivalentes al **22,33 %** de la muestra, seguido por los niveles alto y bajo, ambos con 65 estudiantes (**21,67 %**). El nivel medio agrupa a 55 estudiantes (**18,33 %**) y el nivel muy bajo a 48 (**16 %**).
+
+Al agrupar las categorías, los niveles alto y muy alto representan conjuntamente el **44 %** de los encuestados, mientras que los niveles bajo y muy bajo concentran el **37,67 %**. En general, se evidencia una **ligera tendencia hacia niveles de satisfacción favorables**, aunque las percepciones se mantienen diversas dentro de la muestra analizada.
+::::
+
+## .Variable Discreta
+
+::: callout-important
+## La variable discreta tiene los cuatro tipos de frecuencias
+:::
+
+**Distribución de Frecuencias de los Encuestados según la Variable Curso**
+
+:::: panel-tabset
+## Tabla
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+```{r}
+# Crear la tabla original
+tabla <- tibble(Cursos = educacion$Cursos) %>% 
+  group_by(Cursos) %>% 
+  summarise(fi = n()) %>%
+  mutate(
+    hi = round(fi / sum(fi), 4), 
+    Porcentaje = paste0(round(hi * 100, 2), "%"),
+    Fi = cumsum(fi),
+    Hi = cumsum(hi)
+  )
+
+# Convertir columnas a character para evitar conflictos
+tabla <- tabla %>% 
+  mutate(
+    Cursos = as.character(Cursos),
+    Fi = as.character(Fi),
+    Hi = as.character(Hi)
+  )
+
+# Añadir la fila de totales
+totales <- tibble(
+  Cursos = "Total",
+  fi = sum(tabla$fi),
+  hi = round(sum(tabla$hi), 4),
+  Porcentaje = paste0(round(sum(tabla$hi) * 100, 2), "%"),
+  Fi = "",
+  Hi = ""
+)
+
+# Combinar tabla y totales
+tabla_final <- bind_rows(tabla, totales)
+
+# Mostrar la tabla final
+tabla_final %>% 
+  knitr::kable(
+    col.names = c(
+      "Cursos",
+      "fi",
+      "hi",
+      "Porcentaje",
+      "Fi",
+      "Hi"
+    ),
+    align = c("l", "c", "c", "c", "c", "c")
+  )
+```
+:::
+
+## Bastones
+
+```{r}
+df <- educacion %>%
+  dplyr::count(Cursos) %>%
+  mutate(porcentaje = n / sum(n) * 100)
+
+ggplot(df, aes(x = Cursos, y = porcentaje)) +
+  geom_point(shape = 18, color = "#E65C9C") +
+  geom_segment(
+    aes(xend = Cursos, yend = 0),
+    size = 1,
+    color = "#FF8DA1"
+  ) +
+  labs(
+    x = "Número de Cursos",
+    y = "Porcentaje",
+    title = "Diagrama de Bastones de la Variable Cursos"
+  ) +
+  theme_minimal() +
+  geom_text(
+    aes(label = paste0(round(porcentaje, 1), "%")),
+    vjust = -0.5
+  )
+```
+
+## Escalonado
+
+```{r}
+# Cargar librerías
+library(ggplot2)
+library(dplyr)
+
+# Crear datos acumulados de la variable Cursos
+df <- educacion %>%
+  dplyr::count(Cursos) %>%
+  arrange(Cursos) %>%
+  mutate(
+    hi = n / sum(n),
+    Hi = cumsum(hi)
+  )
+
+# Gráfica de función de distribución acumulada
+ggplot(df, aes(x = Cursos, y = Hi)) +
+  geom_step(color = "#E65C9C", size = 1.2) +
+  geom_point(color = "#FF8DA1", size = 3) +
+  scale_x_continuous(breaks = df$Cursos) +
+  scale_y_continuous(limits = c(0, 1)) +
+  labs(
+    title = "Función de Distribución Acumulada de la Variable Cursos",
+    x = "Número de Cursos",
+    y = "Frecuencia relativa acumulada (Hi)"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    panel.grid.minor = element_blank()
+  )
+```
+
+## Interpretación
+
+En cuanto al número de cursos reportado por los 300 estudiantes encuestados, se observa una distribución relativamente equilibrada entre la mayoría de las categorías. Los cursos **1 y 6** presentan las mayores frecuencias, con 41 estudiantes cada uno, equivalentes al **13,67 %**. Les siguen los cursos 2 y 4 con 40 estudiantes (**13,33 %**), mientras que el curso 3 registra la menor participación con 25 estudiantes (**8,33 %**).
+
+De forma acumulada, hasta el curso 5 se concentra el **60,99 %** de los estudiantes, mientras que al incluir el curso 6 se alcanza el **74,66 %** de la muestra. En general, la distribución no presenta diferencias marcadas entre la mayoría de los cursos, aunque se evidencia una menor representación en el **curso 3**, lo que permite identificar una composición relativamente uniforme en el número de cursos reportados por los participantes.
+::::
+
+## .Variable Continua
+
+::: callout-warning
+## La variable continua se tabula con intervalos
+:::
+
+*Generación de Intervalos de la Variable Horas*
+
+::: panel-tabset
+## Mínimo
+
+```{r}
+Min <- min(educacion$Horas)
+Min
+```
+
+## Máximo
+
+```{r}
+Max <- max(educacion$Horas)
+Max
+```
+
+## Rango
+
+```{r}
+R <- Max-Min
+R
+```
+
+## Intervalos
+
+```{r}
+m <- ceiling(1 + 3.322*log10(nrow(educacion)))
+m
+```
+
+## Amplitud
+
+```{r}
+d <- 2  # Número de decimales de la variable
+A <- ceiling((R / m) * 10^d) / 10^d
+A
+```
+
+## Rango Corregido
+
+```{r}
+RC <- A*m
+RC
+```
+:::
+
+::: callout-caution
+## La amplitud debe tener tanto decimales como lo tienen los datos originales. Si tiene un decimal la fórmula se multiplica y se divide por 10. Si tiene dos decimales la fórmula se multiplica y se divide por 100 y así sucesivamente.
+:::
+
+::: panel-tabset
+## Diferencia
+
+```{r}
+D <- RC-R
+D
+```
+
+## Mínimo Corregido
+
+```{r}
+Xmin <- Min- 0.025
+Xmin
+```
+
+## Máximo Corregido
+
+```{r}
+Xmax <- Max+ 0.025
+Xmax
+```
+:::
+
+::: callout-note
+## La diferencia se debe dividir en dos números lo más equitativos de tal manera que estos números tengan tantos decimales como los datos originales. Al mínimo se le resta uno de los números y al máximo se le suma el otro.
+:::
+
+**Distribución de Frecuencias de los Encuestados según la Variable Horas**
+
+:::: panel-tabset
+## Tabla
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+```{r}
+library(dplyr)
+library(kableExtra)
+
+m1 <- (Xmin+(Xmin+A))/2
+
+interv = cut(x = educacion$Horas, breaks = seq(Xmin, Xmax, by = A), include.lowest = TRUE)
+
+tabla <- tibble(Horas = interv) %>% 
+  group_by(Horas) %>% 
+  summarise(fi = n()) %>% 
+  mutate(hi = fi / sum(fi)) %>% 
+  mutate(
+    mi = seq(m1, by = A, length.out = n()) %>% as.character(),
+    Fi = cumsum(fi) %>% as.character(),
+    Hi = cumsum(fi / sum(fi)) %>% as.character()
+  ) %>% 
+  relocate(Horas, mi, fi)
+  
+
+# Agregar la fila total con casillas en blanco
+tabla <- tabla %>% 
+  add_row(Horas = "Total", mi = "", fi = sum(tabla$fi), hi = sum(tabla$hi), Fi = "", Hi = "")
+
+# Generar la tabla con knitr::kable y agregar título
+tabla %>% 
+  knitr::kable(
+    col.names = c("Horas", "mi", "fi", "hi", "Fi", "Hi"), 
+    align = c("l", "r", "r", "r", "r", "r")
+  ) %>% 
+  kableExtra::kable_styling(full_width = FALSE) %>% 
+  kableExtra::add_header_above(c("Distribuciones de Frecuencias para la Variable Horas" = 6))
+```
+:::
+
+## Histograma
+
+```{r}
+# Librería
+library(ggplot2)
+
+# Datos de tu tabla de distribución
+horas <- data.frame(
+  li = c(1.2, 4.08, 6.96, 9.85, 12.7, 15.6, 18.5, 21.4, 24.2, 27.1),
+  ls = c(4.08, 6.96, 9.85, 12.7, 15.6, 18.5, 21.4, 24.2, 27.1, 30),
+  fi = c(23, 27, 29, 22, 29, 29, 40, 34, 34, 33)
+)
+
+# Histograma con los 10 intervalos
+ggplot(horas) +
+  geom_rect(
+    aes(
+      xmin = li,
+      xmax = ls,
+      ymin = 0,
+      ymax = fi
+    ),
+    fill = "#FF8DA1",
+    color = "#E65C9C"
+  ) +
+  labs(
+    title = "Histograma de la Variable Horas",
+    x = "Horas",
+    y = "Frecuencia"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(
+      hjust = 0.5,
+      face = "bold"
+    )
+  )
+```
+
+## Ojiva
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tibble)
+
+horas <- tibble(
+  li = c(1.2, 4.08, 6.96, 9.85, 12.7, 15.6, 18.5, 21.4, 24.2, 27.1),
+  ls = c(4.08, 6.96, 9.85, 12.7, 15.6, 18.5, 21.4, 24.2, 27.1, 30),
+  fi = c(23, 27, 29, 22, 29, 29, 40, 34, 34, 33)
+)
+
+# Calcular acumuladas
+horas <- horas %>% 
+  mutate(
+    Fi = cumsum(fi),
+    Hi = Fi / sum(fi)
+  )
+
+# Graficar ojiva
+ggplot(horas, aes(x = ls, y = Hi)) +
+  geom_line(color = "#E65C9C", size = 1) +
+  geom_point(color = "#FF8DA1", size = 2) +
+  labs(
+    title = "Ojiva de la Variable Horas",
+    x = "Horas (Límite Superior del Intervalo)",
+    y = "Frecuencia Acumulada Relativa"
+  ) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal()
+```
+
+## Densidad
+
+```{r}
+# Librerías
+library(dplyr)
+
+horas <- data.frame(
+  mi = c(2.645, 5.525, 8.405, 11.285, 14.165, 17.045, 19.925, 22.805, 25.685, 28.565),
+  fi = c(23, 27, 29, 22, 29, 29, 40, 34, 34, 33)
+)
+
+horas_expandida <- horas %>%
+  slice(rep(1:n(), fi))
+
+dens <- density(horas_expandida$mi)
+
+plot(dens,
+     main = "Densidad",
+     xlab = "Horas",
+     ylab = "Densidad",
+     col = "#E65C9C",
+     lwd = 2)
+
+polygon(
+  dens,
+  col = adjustcolor("#FF8DA1", alpha.f = 0.5),
+  border = "#E65C9C"
+)
+```
+
+## Interpretación
+
+En la distribución de la variable horas correspondiente a los 300 estudiantes encuestados, se observa una mayor concentración en los intervalos centrales y superiores. El intervalo **(18,5–21,4\]** presenta la frecuencia más alta, con 40 estudiantes, equivalente al **13,33 %** de la muestra, seguido por los intervalos (21,4–24,2\] y (24,2–27,1\], ambos con 34 estudiantes (**11,33 %**). El intervalo **(9,85–12,7\]** registra la menor frecuencia, con 22 estudiantes (**7,33 %**).
+
+En términos acumulados, hasta el intervalo **(18,5–21,4\]** se concentra el **66,33 %** de los estudiantes, mientras que al incluir el intervalo (24,2–27,1\] se alcanza el **89 %** de la muestra. En general, los datos muestran una distribución relativamente dispersa, aunque con una **mayor presencia de estudiantes en los rangos medios y altos de horas**, especialmente a partir de 18,5 horas.
+::::
+
+*Generación de Intervalos de la Variable Promedio*
+
+::: panel-tabset
+## Mínimo
+
+```{r}
+Min <- min(educacion$Promedio)
+Min
+```
+
+## Máximo
+
+```{r}
+Max <- max(educacion$Promedio)
+Max
+```
+
+## Rango
+
+```{r}
+R <- Max-Min
+R
+```
+
+## Intervalos
+
+```{r}
+m <- ceiling(1 + 3.322*log10(nrow(educacion)))
+m
+```
+
+## Amplitud
+
+```{r}
+d <- 2  # Número de decimales de la variable
+A <- ceiling((R / m) * 10^d) / 10^d
+A
+```
+
+## Rango Corregido
+
+```{r}
+RC <- A*m
+RC
+```
+:::
+
+::: callout-tip
+## La amplitud debe tener tanto decimales como lo tienen los datos originales. Si tiene un decimal la fórmula se multiplica y se divide por 10. Si tiene dos decimales la fórmula se multiplica y se divide por 100 y así sucesivamente.
+:::
+
+::: panel-tabset
+## Diferencia
+
+```{r}
+D <- RC-R
+D
+```
+
+## Mínimo Corregido
+
+```{r}
+Xmin <- Min- 0.02
+Xmin
+```
+
+## Máximo Corregido
+
+```{r}
+Xmax <- Max+ 0.02
+Xmax
+```
+:::
+
+::: callout-important
+## La diferencia se debe dividir en dos números lo más equitativos de tal manera que estos números tengan tantos decimales como los datos originales. Al mínimo se le resta uno de los números y al máximo se le suma el otro.
+:::
+
+**Distribución de Frecuencias de los Encuestados según la Variable Promedio**
+
+:::: panel-tabset
+## Tabla
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+```{r}
+library(dplyr)
+library(kableExtra)
+
+m1 <- (Xmin+(Xmin+A))/2
+
+interv = cut(x = educacion$Promedio, breaks = seq(Xmin, Xmax, by = A), include.lowest = TRUE)
+
+tabla <- tibble(Promedio = interv) %>% 
+  group_by(Promedio) %>% 
+  summarise(fi = n()) %>% 
+  mutate(hi = fi / sum(fi)) %>% 
+  mutate(
+    mi = seq(m1, by = A, length.out = n()) %>% as.character(),
+    Fi = cumsum(fi) %>% as.character(),
+    Hi = cumsum(fi / sum(fi)) %>% as.character()
+  ) %>% 
+  relocate(Promedio, mi, fi)
+  
+
+# Agregar la fila total con casillas en blanco
+tabla <- tabla %>% 
+  add_row(Promedio = "Total", mi = "", fi = sum(tabla$fi), hi = sum(tabla$hi), Fi = "", Hi = "")
+
+# Generar la tabla con knitr::kable y agregar título
+tabla %>% 
+  knitr::kable(
+    col.names = c("Promedio", "mi", "fi", "hi", "Fi", "Hi"), 
+    align = c("l", "r", "r", "r", "r", "r")
+  ) %>% 
+  kableExtra::kable_styling(full_width = FALSE) %>% 
+  kableExtra::add_header_above(c("Distribuciones de Frecuencias para la Variable Promedio" = 6))
+```
+:::
+
+## Histograma
+
+```{r}
+# Librerías
+library(ggplot2)
+
+# Dataframe con los datos de Promedio
+promedio <- data.frame(
+  li = c(1.01, 1.41, 1.81, 2.21, 2.61, 3.01, 3.41, 3.81, 4.21, 4.61),
+  ls = c(1.41, 1.81, 2.21, 2.61, 3.01, 3.41, 3.81, 4.21, 4.61, 5.01),
+  fi = c(28, 30, 32, 17, 35, 37, 29, 35, 25, 32)
+)
+
+# Histograma real con intervalos
+ggplot(promedio) +
+  geom_rect(aes(
+    xmin = li,
+    xmax = ls,
+    ymin = 0,
+    ymax = fi
+  ),
+  fill = "#FF8DA1",
+  color = "#E65C9C"
+  ) +
+  labs(
+    title = "Histograma de la Variable Promedio",
+    x = "Promedio",
+    y = "Frecuencia"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold")
+  )
+```
+
+## Ojiva
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tibble)
+
+promedio <- tibble(
+  li = c(1.01, 1.41, 1.81, 2.21, 2.61, 3.01, 3.41, 3.81, 4.21, 4.61),
+  ls = c(1.41, 1.81, 2.21, 2.61, 3.01, 3.41, 3.81, 4.21, 4.61, 5.01),
+  fi = c(28, 30, 32, 17, 35, 37, 29, 35, 25, 32)
+)
+
+# Calcular acumuladas
+promedio <- promedio %>% 
+  mutate(
+    Fi = cumsum(fi),
+    Hi = Fi / sum(fi)
+  )
+
+# Graficar ojiva
+ggplot(promedio, aes(x = ls, y = Hi)) +
+  geom_line(color = "#E65C9C", size = 1) +
+  geom_point(color = "#FF8DA1", size = 2) +
+  labs(
+    title = "Ojiva de la Variable Promedio",
+    x = "Promedio (Límite Superior del Intervalo)",
+    y = "Frecuencia Acumulada Relativa"
+  ) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal()
+```
+
+## Densidad
+
+```{r}
+# Librerías
+library(dplyr)
+
+promedio <- data.frame(
+  mi = c(1.21, 1.61, 2.01, 2.41, 2.81, 3.21, 3.61, 4.01, 4.41, 4.81),
+  fi = c(28, 30, 32, 17, 35, 37, 29, 35, 25, 32)
+)
+
+promedio_expandida <- promedio %>%
+  slice(rep(1:n(), fi))
+
+dens <- density(promedio_expandida$mi)
+
+plot(dens,
+     main = "Densidad",
+     xlab = "Promedio",
+     ylab = "Densidad",
+     col = "#E65C9C",
+     lwd = 2)
+
+polygon(
+  dens,
+  col = adjustcolor("#FF8DA1", alpha.f = 0.5),
+  border = "#E65C9C"
+)
+```
+
+## Interpretación
+
+En cuanto a la variable promedio de los 300 estudiantes encuestados, se observa una distribución repartida entre los distintos intervalos, aunque con una mayor concentración en los valores intermedios. El intervalo **(3,01–3,41\]** presenta la frecuencia más alta, con 37 estudiantes, equivalente al **12,33 %** de la muestra, seguido por los intervalos (2,61–3,01\] y (3,81–4,21\], ambos con 35 estudiantes (**11,67 %**). El intervalo **(2,21–2,61\]** registra la menor frecuencia, con 17 estudiantes (**5,67 %**).
+
+De manera acumulada, hasta el intervalo **(3,01–3,41\]** se concentra el **59,67 %** de los estudiantes, mientras que al incluir el intervalo (3,81–4,21\] se alcanza el **81 %** de la muestra. En general, los datos muestran una **mayor concentración de promedios en los rangos medios**, aunque también se observa participación en los valores altos, lo que refleja una distribución relativamente amplia del desempeño académico.
+::::
+
+*Generación de Intervalos de la Variable Asistencia*
+
+::: panel-tabset
+## Mínimo
+
+```{r}
+Min <- min(educacion$`Asistencia (%)`)
+Min
+```
+
+## Máximo
+
+```{r}
+Max <- max(educacion$`Asistencia (%)`)
+Max
+```
+
+## Rango
+
+```{r}
+R <- Max-Min
+R
+```
+
+## Intervalos
+
+```{r}
+m <- ceiling(1 + 3.322*log10(nrow(educacion)))
+m
+```
+
+## Amplitud
+
+```{r}
+d <- 2  # Número de decimales de la variable
+A <- ceiling((R / m) * 10^d) / 10^d
+A
+```
+
+## Rango Corregido
+
+```{r}
+RC <- A*m
+RC
+```
+:::
+
+::: callout-note
+## La amplitud debe tener tanto decimales como lo tienen los datos originales. Si tiene un decimal la fórmula se multiplica y se divide por 10. Si tiene dos decimales la fórmula se multiplica y se divide por 100 y así sucesivamente.
+:::
+
+::: panel-tabset
+## Diferencia
+
+```{r}
+D <- RC-R
+D
+```
+
+## Mínimo Corregido
+
+```{r}
+Xmin <- Min- 0.01
+Xmin
+```
+
+## Máximo Corregido
+
+```{r}
+Xmax <- Max+ 0.02
+Xmax
+```
+:::
+
+::: callout-tip
+## La diferencia se debe dividir en dos números lo más equitativos de tal manera que estos números tengan tantos decimales como los datos originales. Al mínimo se le resta uno de los números y al máximo se le suma el otro.
+:::
+
+**Distribución de Frecuencias de los Encuestados según la Variable Asistencia**
+
+::: panel-tabset
+## Tabla
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+```{r}
+library(dplyr)
+library(kableExtra)
+
+m1 <- (Xmin+(Xmin+A))/2
+
+interv = cut(
+  x = educacion$`Asistencia (%)`,
+  breaks = seq(Xmin, Xmax, by = A),
+  include.lowest = TRUE
+)
+
+tabla <- tibble(Asistencia = interv) %>% 
+  group_by(Asistencia) %>% 
+  summarise(fi = n()) %>% 
+  mutate(hi = fi / sum(fi)) %>% 
+  mutate(
+    mi = seq(m1, by = A, length.out = n()) %>% as.character(),
+    Fi = cumsum(fi) %>% as.character(),
+    Hi = cumsum(fi / sum(fi)) %>% as.character()
+  ) %>% 
+  relocate(Asistencia, mi, fi)
+  
+
+# Agregar la fila total con casillas en blanco
+tabla <- tabla %>% 
+  add_row(
+    Asistencia = "Total", 
+    mi = "", 
+    fi = sum(tabla$fi), 
+    hi = sum(tabla$hi), 
+    Fi = "", 
+    Hi = ""
+  )
+
+# Generar la tabla con knitr::kable y agregar título
+tabla %>% 
+  knitr::kable(
+    col.names = c("Asistencia", "mi", "fi", "hi", "Fi", "Hi"), 
+    align = c("l", "r", "r", "r", "r", "r")
+  ) %>% 
+  kableExtra::kable_styling(full_width = FALSE) %>% 
+  kableExtra::add_header_above(
+    c("Distribuciones de Frecuencias para la Variable Asistencia" = 6)
+  )
+```
+:::
+
+## Histograma
+```{r}
+# Librerías
+library(ggplot2)
+
+# Crear los intervalos y frecuencias con los datos de Asistencia
+hist_asistencia <- hist(
+  educacion$`Asistencia (%)`,
+  breaks = 10,
+  plot = FALSE
+)
+
+# Dataframe con los datos de Asistencia
+asistencia <- data.frame(
+  li = head(hist_asistencia$breaks, -1),
+  ls = tail(hist_asistencia$breaks, -1),
+  fi = hist_asistencia$counts
+)
+
+# Histograma real con intervalos
+ggplot(asistencia) +
+  geom_rect(aes(
+    xmin = li,
+    xmax = ls,
+    ymin = 0,
+    ymax = fi
+  ),
+  fill = "#FF8DA1",
+  color = "#E65C9C"
+  ) +
+  labs(
+    title = "Histograma de la Variable Asistencia",
+    x = "Asistencia (%)",
+    y = "Frecuencia"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold")
+  )
+```
+
+
+## Ojiva
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tibble)
+
+# Crear los intervalos y frecuencias con los datos de Asistencia
+hist_asistencia <- hist(
+  educacion$`Asistencia (%)`,
+  breaks = 10,
+  plot = FALSE
+)
+
+asistencia <- tibble(
+  li = head(hist_asistencia$breaks, -1),
+  ls = tail(hist_asistencia$breaks, -1),
+  fi = hist_asistencia$counts
+)
+
+# Calcular acumuladas
+asistencia <- asistencia %>% 
+  mutate(
+    Fi = cumsum(fi),
+    Hi = Fi / sum(fi)
+  )
+
+# Graficar ojiva
+ggplot(asistencia, aes(x = ls, y = Hi)) +
+  geom_line(color = "#E65C9C", size = 1) +
+  geom_point(color = "#FF8DA1", size = 2) +
+  labs(
+    title = "Ojiva de la Variable Asistencia",
+    x = "Asistencia (%) (Límite Superior del Intervalo)",
+    y = "Frecuencia Acumulada Relativa"
+  ) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal()
+```
+
+
+## Densidad
+```{r}
+# Librerías
+library(dplyr)
+
+asistencia <- data.frame(
+  mi = educacion$`Asistencia (%)`,
+  fi = 1
+)
+
+asistencia_expandida <- asistencia %>%
+  slice(rep(1:n(), fi))
+
+dens <- density(asistencia_expandida$mi)
+
+plot(dens,
+     main = "Densidad",
+     xlab = "Asistencia (%)",
+     ylab = "Densidad",
+     col = "#E65C9C",
+     lwd = 2)
+
+polygon(
+  dens,
+  col = adjustcolor("#FF8DA1", alpha.f = 0.5),
+  border = "#E65C9C"
+)
+```
+
+## Interpretación
+Al revisar la distribución de la variable asistencia en los 300 estudiantes encuestados, se aprecia una mayor presencia en algunos intervalos específicos. Los rangos **[50,2–55,1]**, **(79,9–84,9]** y **(89,8–94,8]** presentan las frecuencias más altas, con 38 estudiantes cada uno, equivalentes al **12,67 %** de la muestra. En contraste, el intervalo **(75–79,9]** registra la menor frecuencia, con 14 estudiantes, correspondiente al **4,67 %**.
+
+Desde una perspectiva acumulada, hasta el intervalo **(79,9–84,9]** se concentra el **66,33 %** de los estudiantes, mientras que al incluir el rango (89,8–94,8] se alcanza el **88,33 %**. En general, la asistencia presenta una **distribución heterogénea**, con concentraciones importantes tanto en niveles bajos como altos, aunque se observa una presencia considerable de estudiantes en los rangos superiores de asistencia.
+::::
+
+# .Tablas de Contingencia
+::::: panel-tabset
+
+## Absolutas
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+```{r}
+# Cargar las bibliotecas necesarias
+library(dplyr)
+library(readxl)
+library(kableExtra)
+
+# Filtrar y ordenar la variable Nivel_Educativo
+educacion_filtrada <- educacion %>%
+  filter(Nivel_Educativo %in% c("Secundaria", "Universidad")) %>%
+  mutate(
+    Nivel_Educativo = factor(
+      Nivel_Educativo,
+      levels = c("Secundaria", "Universidad")
+    )
+  )
+
+# Crear una tabla de contingencia con Nivel_Educativo y Estrato
+table_educativo_estrato <- table(
+  educacion_filtrada$Nivel_Educativo,
+  educacion_filtrada$Estrato
+)
+
+# Convertir la tabla a un data frame para facilitar el manejo de datos
+table_df <- as.data.frame.matrix(table_educativo_estrato)
+
+# Calcular los totales de frecuencia absoluta (Total)
+table_df$Total <- rowSums(table_df)  # Totales por fila
+total_fi <- sum(table_df$Total)      # Total general
+
+# Añadir una fila de totales al final de la tabla
+table_df <- rbind(
+  table_df,
+  Total = c(colSums(table_educativo_estrato), total_fi)
+)
+
+# Mostrar la tabla con kableExtra
+table_df %>%
+  kable(
+    "html",
+    caption = "Tabla de Frecuencias Absolutas de Nivel Educativo vs Estrato de los Encuestados"
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = F,
+    position = "center"
+  )
+```
+:::
+
+## Relativas
+
+```{=html}
+<style>
+.tabla-frecuencias thead th {
+  background-color: #E2889B !important;
+  color: #000000 !important;
+}
+
+.tabla-frecuencias tbody td {
+  background-color: #F8E1E6 !important;
+  color: #000000 !important;
+}
+</style>
+```
+
+::: tabla-frecuencias
+```{r}
+# Cargar las bibliotecas necesarias
+library(dplyr)
+library(readxl)
+library(kableExtra)
+
+# Filtrar y ordenar la variable Nivel_Educativo
+educacion_filtrada <- educacion %>%
+  filter(Nivel_Educativo %in% c("Secundaria", "Universidad")) %>%
+  mutate(
+    Nivel_Educativo = factor(
+      Nivel_Educativo,
+      levels = c("Secundaria", "Universidad")
+    )
+  )
+
+# Crear una tabla de contingencia con Nivel_Educativo y Estrato
+table_educativo_estrato <- table(
+  educacion_filtrada$Nivel_Educativo,
+  educacion_filtrada$Estrato
+)
+
+# Convertir la tabla a un data frame para facilitar el manejo de datos
+table_df <- as.data.frame.matrix(table_educativo_estrato)
+
+# Calcular el total general para las frecuencias relativas
+total_fi <- sum(table_df)
+
+# Calcular las frecuencias relativas
+table_df <- table_df / total_fi
+
+# Calcular los totales de frecuencia relativa por fila y columna
+table_df$Total <- rowSums(table_df)
+total_column <- colSums(table_df)
+
+# Añadir una fila de totales al final de la tabla
+table_df <- rbind(table_df, Total = total_column)
+
+# Mostrar la tabla con kableExtra
+table_df %>%
+  kable(
+    "html",
+    caption = "Tabla de Frecuencias Relativas de Nivel Educativo vs Estrato de los Encuestados"
+  ) %>%
+  kable_styling(
+    bootstrap_options = c("striped", "hover", "condensed", "responsive"),
+    full_width = F,
+    position = "center"
+  )
+```
+:::
+
+## Conjuntas
+
+```{r}
+# Cargar las librerías necesarias
+library(ggplot2)
+library(dplyr)
+library(readxl)
+
+# Cambiar el orden de Nivel_Educativo
+educacion$Nivel_Educativo <- factor(
+  educacion$Nivel_Educativo,
+  levels = c("Secundaria", "Universidad")
+)
+
+# Calcular los porcentajes de cada categoría de Estrato dentro de cada Nivel_Educativo
+data_porcentaje <- educacion %>%
+  count(Nivel_Educativo, Estrato) %>%
+  group_by(Nivel_Educativo) %>%
+  mutate(porcentaje = n / sum(n) * 100)
+
+# Crear el diagrama de barras conjuntas con porcentajes
+ggplot(data_porcentaje, aes(x = Nivel_Educativo, y = porcentaje, fill = Estrato)) +
+  geom_bar(stat = "identity", position = "dodge") +  # Usar "stack" si deseas barras apiladas
+  scale_fill_manual(values = c("#E65C9C", "#FF8DA1", "#FFC0CB")) +
+  labs(title = "Distribución Porcentual del Estrato por el Nivel Educativo",
+       x = "Nivel Educativo",
+       y = "Porcentaje",
+       fill = "Estrato") +
+  theme_minimal() +
+  geom_text(aes(label = sprintf("%.1f%%", porcentaje)), 
+            position = position_dodge(0.9), 
+            vjust = -0.5, 
+            size = 3)
+```
+
+## Apiladas 1
+
+```{r}
+# Cargar las librerías necesarias
+library(ggplot2)
+library(dplyr)
+library(readxl)
+
+# Calcular los porcentajes de cada categoría de Estrato dentro de cada Nivel_Educativo
+data_porcentaje <- educacion %>%
+  mutate(
+    Nivel_Educativo = as.character(Nivel_Educativo),
+    Nivel_Educativo = ifelse(
+      is.na(Nivel_Educativo),
+      "NA",
+      Nivel_Educativo
+    ),
+    Nivel_Educativo = factor(
+      Nivel_Educativo,
+      levels = c("Secundaria", "Universidad", "NA")
+    )
+  ) %>%
+  count(Nivel_Educativo, Estrato) %>%
+  group_by(Nivel_Educativo) %>%
+  mutate(porcentaje = n / sum(n) * 100)
+
+# Crear el diagrama de barras apiladas con porcentajes
+ggplot(data_porcentaje, aes(x = Nivel_Educativo, y = porcentaje, fill = Estrato)) +
+  geom_bar(stat = "identity", position = "stack") +
+  scale_fill_manual(values = c("#E65C9C", "#FF8DA1", "#FFC0CB")) +
+  labs(title = "Distribución Porcentual del Estrato por el Nivel Educativo",
+       x = "Nivel Educativo",
+       y = "Porcentaje",
+       fill = "Estrato") +
+  theme_minimal() +
+  geom_text(aes(label = sprintf("%.1f%%", porcentaje)), 
+            position = position_stack(vjust = 0.5), 
+            color = "white",
+            size = 3)
+```
+
+## Apiladas 2
+
+```{r}
+# Cargar las librerías necesarias
+library(ggplot2)
+library(dplyr)
+library(readxl)
+
+
+# Calcular los porcentajes de cada categoría de Estrato dentro de cada Nivel_Educativo
+data_porcentaje <- educacion %>%
+  mutate(
+    Nivel_Educativo = as.character(Nivel_Educativo),
+    Nivel_Educativo = ifelse(is.na(Nivel_Educativo), "NA", Nivel_Educativo),
+    Nivel_Educativo = factor(
+      Nivel_Educativo,
+      levels = c("NA", "Universidad", "Secundaria")
+    )
+  ) %>%
+  count(Nivel_Educativo, Estrato) %>%
+  group_by(Nivel_Educativo) %>%
+  mutate(porcentaje = n / sum(n) * 100)
+
+# Crear el diagrama de barras apiladas en forma horizontal con porcentajes
+ggplot(data_porcentaje, aes(x = Nivel_Educativo, y = porcentaje, fill = Estrato)) +
+  geom_bar(stat = "identity", position = "stack") +
+  scale_fill_manual(values = c("#E65C9C", "#FF8DA1", "#FFC0CB")) +
+  labs(title = "Distribución Porcentual de Estrato por Nivel Educativo",
+       x = "Nivel Educativo",
+       y = "Porcentaje",
+       fill = "Estrato") +
+  theme_minimal() +
+  geom_text(aes(label = sprintf("%.1f%%", porcentaje)), 
+            position = position_stack(vjust = 0.5), 
+            color = "white",
+            size = 3) +
+  coord_flip()
+```
+
+## Interpretación
+
+En la tabla de **frecuencias absolutas** se observa que, entre los 207 estudiantes considerados, el grupo más numeroso corresponde a quienes tienen nivel educativo de Secundaria y pertenecen al estrato medio, con **46 estudiantes**. En el caso de Universidad, la mayor frecuencia se presenta en el estrato bajo, con **37 estudiantes**, seguida del estrato alto con 35. En términos generales, el **estrato medio concentra la mayor cantidad de estudiantes**, con 76 casos, mientras que el estrato alto presenta la menor frecuencia total, con 64.
+
+Por su parte, la tabla de **frecuencias relativas** muestra que el **22,22 %** del total corresponde a estudiantes de Secundaria ubicados en el estrato medio, siendo la combinación con mayor peso relativo. Le siguen los estudiantes universitarios de estrato bajo, con **17,87 %**, y los universitarios de estrato alto, con **16,91 %**. En conjunto, los estudiantes de Secundaria representan el **50,72 %** de la muestra y los universitarios el **49,28 %**, lo que evidencia una distribución bastante equilibrada entre ambos niveles educativos.
+:::::
